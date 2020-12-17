@@ -5,9 +5,9 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/backend #TODO
-    username: postgres #TODO
-    password: postgres #TODO
+    url: jdbc:postgresql://localhost:5432/xcom
+    username: postgres
+    password: postgres
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       maximum-pool-size: 100
