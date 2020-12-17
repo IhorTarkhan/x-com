@@ -1,0 +1,41 @@
+server:
+  address: 127.0.0.1
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/backend #TODO
+    username: postgres #TODO
+    password: postgres #TODO
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 100
+      minimum-idle: 40
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+    properties:
+      hibernate:
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+  liquibase:
+    enabled: false
+    change-log: classpath:changelog.xml
+
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+
+liquibase:
+  manual: true
+
+test:
+  response: some text
+
+cors:
+  enabled: true
