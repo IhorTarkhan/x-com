@@ -3,10 +3,38 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet id="test-populating" author="IhorTarkhan">
+    <changeSet id="populate-positions" author="IhorTarkhan">
         <sql>
-            INSERT INTO test_data (id, text)
-            VALUES (1, 'some_text');
+            DELETE
+            FROM position
+            WHERE id >= 0;
+
+            INSERT INTO position (id, x, y)
+            VALUES (1, 1, 1),
+            (2, 2, 1),
+            (3, 7, 3),
+            (4, 5, 4),
+            (5, 2, 4),
+            (6, 3, 7),
+            (7, 9, 4),
+            (8, 3, 4),
+            (9, 2, 4),
+            (10, 7, 1);
+        </sql>
+    </changeSet>
+    <changeSet id="populate-units" author="IhorTarkhan">
+        <sql>
+            DELETE
+            FROM unit
+            WHERE id >= 0;
+
+            INSERT INTO unit (id, health, max_health, name, type, position_id)
+            VALUES (1, 7, 8, 'Otto Zander', 'RANGER', 1),
+            (2, 4, 8, 'William Carter', 'RANGER', 2),
+            (3, 10, 10, 'Joe Kelly', 'GRENADIER', 3),
+            (5, 7, 7, 'Sid Meier', 'SPECIALIST', 4),
+            (4, 5, 5, 'Ken Levine', 'SHARPSHOOTER', 9),
+            (6, 4, 5, 'Chris Kluwe', 'SHARPSHOOTER', 6);
         </sql>
     </changeSet>
 </databaseChangeLog>

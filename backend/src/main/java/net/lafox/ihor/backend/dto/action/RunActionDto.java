@@ -12,6 +12,6 @@ import net.lafox.ihor.backend.dto.PositionDto;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonSerialize
-public class RunActionDto implements UnitActions {
+public class RunActionDto implements UnitAction {
   private PositionDto target;
 }

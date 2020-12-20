@@ -1,4 +1,4 @@
-package net.lafox.ihor.backend.dto;
+package net.lafox.ihor.backend.entity;
 
 public enum UnitType {
   RANGER,

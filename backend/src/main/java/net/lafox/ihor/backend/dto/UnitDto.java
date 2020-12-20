@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.lafox.ihor.backend.dto.action.UnitActions;
+import net.lafox.ihor.backend.dto.action.UnitAction;
+import net.lafox.ihor.backend.entity.UnitType;
 
 import java.util.List;
 import java.util.Map;
@@ -22,5 +23,5 @@ public class UnitDto {
   private PositionDto position;
   private Integer maxHealth;
   private Integer health;
-  private Map<ActionsType, List<UnitActions>> actions;
+  private Map<ActionsType, List<UnitAction>> actions;
 }

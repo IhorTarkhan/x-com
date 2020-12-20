@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonSerialize
 public class PositionDto {
+  private Long id;
   private Integer x;
   private Integer y;
 }
