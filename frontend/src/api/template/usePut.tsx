@@ -28,7 +28,7 @@ export const usePut = <PUT_TYPE, RESPONSE_TYPE>(
       setIsLoading(false);
     };
     putData(puttingData);
-  }, [puttingData]);
+  }, [url, puttingData]);
 
   return [setPuttingData, responseData, isLoading, error];
 };

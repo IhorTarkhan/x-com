@@ -24,7 +24,7 @@ export const useDeleteById = (
       setIsLoading(false);
     };
     getData(deletingId);
-  }, [deletingId]);
+  }, [url, deletingId]);
 
   return [setGettingId, isLoading, error];
 };

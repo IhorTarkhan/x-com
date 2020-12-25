@@ -27,7 +27,7 @@ export const useGetById = <RESPONSE_TYPE,>(
       setIsLoading(false);
     };
     getData(gettingId);
-  }, [gettingId]);
+  }, [url, gettingId]);
 
   return [setGettingId, responseData, isLoading, error];
 };

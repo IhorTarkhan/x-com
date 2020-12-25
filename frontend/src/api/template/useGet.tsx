@@ -26,7 +26,7 @@ export const useGet = <RESPONSE_TYPE,>(
       setIsLoading(false);
     };
     getData();
-  }, [update]);
+  }, [url, update]);
 
   return [responseData, isLoading, error, () => setUpdate({})];
 };

@@ -5,17 +5,15 @@ import { usePut } from "./template/usePut";
 import { useGetById } from "./template/useGetById";
 import { useDeleteById } from "./template/useDeleteById";
 
-export const useGetUsers = () =>
-  useGet<UnitDto[]>("https://google.com/aaabbbcccdd");
+export const useGetUsers = () => useGet<UnitDto[]>("https://useGetUsers");
 
 export const useGetUserById = () =>
-  useGetById<UnitDto>("https://google.com/aaabbbccc");
+  useGetById<UnitDto>("https://useGetUserById");
 
 export const usePostUser = () =>
-  usePost<UnitDto, UnitDto>("https://google.com/aaa");
+  usePost<UnitDto, UnitDto>("https://usePostUser");
 
-export const usePutUser = () =>
-  usePut<UnitDto, UnitDto>("https://google.com/aaab");
+export const usePutUser = () => usePut<UnitDto, UnitDto>("https://usePutUser");
 
 export const useDeleteUserById = () =>
-  useDeleteById("https://google.com/aaabbbccddeeeff");
+  useDeleteById("https://useDeleteUserById");

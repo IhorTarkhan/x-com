@@ -1,30 +1,58 @@
-import React, { ReactElement, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { ReactElement } from "react";
 import { Button } from "@material-ui/core";
-import { usePost } from "../api/template/usePost";
-import { HOST } from "../constant/environment-variables";
+import {
+  useGetUserById,
+  useGetUsers,
+  useDeleteUserById,
+  usePostUser,
+  usePutUser,
+} from "../api/unitApi";
 
 export const MainPage = (): ReactElement => {
-  const history = useHistory();
-  const [setPostingData, responseData, isLoading, error] = usePost<
-    { id: number | undefined; text: string },
-    { id: number; text: string }
-  >(HOST);
-
-  const handleClickButton = (): void => {
-    // history.push(test);
-    setPostingData({ id: undefined, text: "someText" });
-  };
-  useEffect(() => {
-    console.log(responseData);
-  }, [responseData]);
+  const [setGettingId, , ,] = useGetUserById();
+  const [, , , update] = useGetUsers();
+  const [dele, ,] = useDeleteUserById();
+  const [post, , ,] = usePostUser();
+  const [put, , ,] = usePutUser();
 
   return (
     <>
-      Hello <i>X-COM</i>
-      <br />
-      <Button variant="outlined" onClick={handleClickButton}>
-        Test Page
+      <Button variant="outlined" onClick={(): void => setGettingId(1)}>
+        Get by id
+      </Button>
+      <Button variant="outlined" onClick={(): void => update()}>
+        Get update
+      </Button>
+      <Button variant="outlined" onClick={(): void => dele(888)}>
+        Delete
+      </Button>
+      <Button
+        variant="outlined"
+        onClick={(): void =>
+          post({
+            id: 1,
+            name: "2",
+            type: "3",
+            maxHealth: 2,
+            health: 3,
+          })
+        }
+      >
+        POST
+      </Button>
+      <Button
+        variant="outlined"
+        onClick={(): void =>
+          put({
+            id: 4,
+            name: "1",
+            type: "4",
+            maxHealth: 3,
+            health: 2,
+          })
+        }
+      >
+        PUT
       </Button>
     </>
   );

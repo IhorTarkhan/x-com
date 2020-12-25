@@ -27,7 +27,7 @@ export const usePost = <POST_TYPE, RESPONSE_TYPE>(
       setIsLoading(false);
     };
     postData(postingData);
-  }, [postingData]);
+  }, [url, postingData]);
 
   return [setPostingData, responseData, isLoading, error];
 };
