@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import { usePost } from "../api/usePost";
+import { usePost } from "../api/template/usePost";
 import { HOST } from "../constant/environment-variables";
 
 export const MainPage = (): ReactElement => {

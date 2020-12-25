@@ -1,34 +1,32 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const usePost = <POST_TYPE, RESPONSE_TYPE>(
+export const useGet = <RESPONSE_TYPE,>(
   url: string
 ): [
-  (data: POST_TYPE) => void,
   RESPONSE_TYPE | undefined,
   boolean | undefined,
-  { message: string } | undefined
+  { message: string } | undefined,
+  () => void
 ] => {
-  const [postingData, setPostingData] = useState<POST_TYPE>();
   const [responseData, setResponseData] = useState<RESPONSE_TYPE>();
   const [isLoading, setIsLoading] = useState<boolean>();
   const [error, setError] = useState<{ message: string }>();
+  const [update, setUpdate] = useState<{}>({});
 
   useEffect(() => {
-    if (!url) return;
-    if (!postingData) return;
-    const postData = async (postingData: POST_TYPE) => {
+    const getData = async () => {
       setIsLoading(true);
       try {
-        let resp: RESPONSE_TYPE = (await axios.post(url, postingData)).data;
+        let resp: RESPONSE_TYPE = (await axios.get(url)).data;
         setResponseData(resp);
       } catch (e) {
         setError(e);
       }
       setIsLoading(false);
     };
-    postData(postingData);
-  }, [postingData, url]);
+    getData();
+  }, [update]);
 
-  return [setPostingData, responseData, isLoading, error];
+  return [responseData, isLoading, error, () => setUpdate({})];
 };
