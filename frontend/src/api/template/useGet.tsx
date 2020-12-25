@@ -4,10 +4,10 @@ import axios from "axios";
 export const useGet = <RESPONSE_TYPE,>(
   url: string
 ): [
+  () => void,
   RESPONSE_TYPE | undefined,
   boolean | undefined,
-  { message: string } | undefined,
-  () => void
+  { message: string } | undefined
 ] => {
   const [responseData, setResponseData] = useState<RESPONSE_TYPE>();
   const [isLoading, setIsLoading] = useState<boolean>();
@@ -28,5 +28,5 @@ export const useGet = <RESPONSE_TYPE,>(
     getData();
   }, [url, update]);
 
-  return [responseData, isLoading, error, () => setUpdate({})];
+  return [() => setUpdate({}), responseData, isLoading, error];
 };

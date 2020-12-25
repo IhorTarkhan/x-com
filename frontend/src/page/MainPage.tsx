@@ -10,8 +10,8 @@ import {
 
 export const MainPage = (): ReactElement => {
   const [setGettingId, , ,] = useGetUserById();
-  const [, , , update] = useGetUsers();
-  const [dele, ,] = useDeleteUserById();
+  const [update, , ,] = useGetUsers();
+  const [del, ,] = useDeleteUserById();
   const [post, , ,] = usePostUser();
   const [put, , ,] = usePutUser();
 
@@ -23,7 +23,7 @@ export const MainPage = (): ReactElement => {
       <Button variant="outlined" onClick={(): void => update()}>
         Get update
       </Button>
-      <Button variant="outlined" onClick={(): void => dele(888)}>
+      <Button variant="outlined" onClick={(): void => del(888)}>
         Delete
       </Button>
       <Button
