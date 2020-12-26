@@ -5,13 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.lafox.ihor.backend.dto.PositionDto;
+
+import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonSerialize
-public class RunActionDto{
-  private PositionDto target;
+public class ActionsDto {
+  private List<RunActionDto> run;
+  private List<FireActionDto> fire;
 }

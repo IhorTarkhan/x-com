@@ -12,7 +12,7 @@ import net.lafox.ihor.backend.dto.PositionDto;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonSerialize
-public class FireActionDto implements UnitAction {
+public class FireActionDto {
   private PositionDto target;
   private Integer damage;
   private Double chance;

@@ -2,9 +2,8 @@ package net.lafox.ihor.backend.service;
 
 import lombok.RequiredArgsConstructor;
 import net.lafox.ihor.backend.dto.UnitDto;
-import net.lafox.ihor.backend.dto.action.FireActionDto;
+import net.lafox.ihor.backend.dto.action.ActionsDto;
 import net.lafox.ihor.backend.dto.action.RunActionDto;
-import net.lafox.ihor.backend.dto.action.UnitAction;
 import net.lafox.ihor.backend.entity.Position;
 import net.lafox.ihor.backend.entity.UnitType;
 import net.lafox.ihor.backend.repository.PositionRepository;
@@ -12,11 +11,8 @@ import net.lafox.ihor.backend.repository.UnitRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 import static java.util.stream.Collectors.toList;
-import static net.lafox.ihor.backend.dto.ActionsType.FIRE;
-import static net.lafox.ihor.backend.dto.ActionsType.RUN;
 import static net.lafox.ihor.backend.entity.UnitType.*;
 import static net.lafox.ihor.backend.mapper.PositionMapper.POSITION_MAPPER;
 import static net.lafox.ihor.backend.mapper.UnitMapper.UNIT_MAPPER;
@@ -31,15 +27,16 @@ public class UnitService {
     return unitRepository.findAll().stream()
         .map(
             unit -> {
-              List<UnitAction> runActions = getRunnableActions(unit.getPosition(), unit.getType());
+              List<RunActionDto> runActions =
+                  getRunnableActions(unit.getPosition(), unit.getType());
               UnitDto unitDto = UNIT_MAPPER.entityToDto(unit);
-              unitDto.setActions(Map.of(RUN, runActions, FIRE, List.of(new FireActionDto())));
+              unitDto.setActions(new ActionsDto(runActions, null));
               return unitDto;
             })
         .collect(toList());
   }
 
-  private List<UnitAction> getRunnableActions(Position currentPosition, UnitType type) {
+  private List<RunActionDto> getRunnableActions(Position currentPosition, UnitType type) {
     return getRunnablePositions(currentPosition, type).stream()
         .map(position -> new RunActionDto(POSITION_MAPPER.entityToDto(position)))
         .collect(toList());
