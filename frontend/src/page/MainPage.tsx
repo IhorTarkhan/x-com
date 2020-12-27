@@ -3,9 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Layout } from "../component/Layout";
 
 const useStyles = makeStyles(() => ({
-  button: {
-    color: "blue",
+  styles: {
+    width: "200px",
+    margin: "20px auto"
   },
+  pStyle: {
+    color: "green"
+  }
 }));
 
 function checkWinner(boxes: Array<string>) {
@@ -17,7 +21,7 @@ function checkWinner(boxes: Array<string>) {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6],
+    [2, 4, 6]
   ];
   for (let i = 0; i < lines.length; i++) {
     const [x, y, z] = lines[i];
@@ -29,12 +33,14 @@ function checkWinner(boxes: Array<string>) {
 }
 
 export const MainPage = (): ReactElement => {
+  const classes = useStyles();
+
   const [layout, setLayout] = useState(Array(9).fill(null));
   const [xIsNext, setXisNext] = useState(true);
   const winner = checkWinner(layout);
 
   const handleClick = (event: any) => {
-    const i = xIsNext ? 3 : 5;
+    const i = event.currentTarget.value;
     const layoutState = [...layout];
     if (winner || layoutState[i]) return;
     layoutState[i] = xIsNext ? "X" : "O";
@@ -45,8 +51,8 @@ export const MainPage = (): ReactElement => {
   return (
     <>
       <Layout boxes={layout} onClick={handleClick} />
-      <div>
-        <p>
+      <div className={classes.styles}>
+        <p className={classes.pStyle}>
           {winner
             ? "Winner: " + winner
             : "Next Player " + (xIsNext ? "X" : "O")}

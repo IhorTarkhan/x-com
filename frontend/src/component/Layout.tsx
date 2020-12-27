@@ -10,8 +10,8 @@ const useStyles = makeStyles(() => ({
     height: "320px",
     margin: "0 auto",
     display: "grid",
-    gridTemplate: "repeat(3, 1fr) / repeat(3, 1fr)",
-  },
+    gridTemplate: "repeat(3, 1fr) / repeat(3, 1fr)"
+  }
 }));
 
 interface Props {
@@ -29,7 +29,7 @@ export const Layout = (props: Props): ReactElement => {
   return (
     <div className={classes.root}>
       {props.boxes.map((box, i) => (
-        <Box key={i} value={box} onClick={props.onClick} />
+        <Box key={i} value={String(i)} content={box} onClick={props.onClick} />
       ))}
     </div>
   );

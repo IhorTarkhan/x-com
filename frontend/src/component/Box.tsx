@@ -9,8 +9,8 @@ const useStyles = makeStyles(() => ({
     fontSize: "30px",
     cursor: "pointer",
     outline: "none",
-    fontWeight: 800,
-  },
+    fontWeight: 800
+  }
 }));
 
 interface Props {
@@ -19,6 +19,7 @@ interface Props {
       | React.MouseEvent<HTMLAnchorElement>
       | React.MouseEvent<HTMLButtonElement>
   ) => void;
+  content: any;
   value: string;
 }
 
@@ -26,8 +27,12 @@ export const Box = (props: Props): ReactElement => {
   const classes = useStyles();
 
   return (
-    <Button className={classes.button} onClick={props.onClick}>
-      {props.value}
+    <Button
+      className={classes.button}
+      onClick={props.onClick}
+      value={props.value}
+    >
+      {props.content}
     </Button>
   );
 };
