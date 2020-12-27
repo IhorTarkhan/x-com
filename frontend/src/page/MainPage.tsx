@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   useGetUserById,
   useGetUsers,
@@ -8,7 +9,15 @@ import {
   usePutUser,
 } from "../api/unitApi";
 
+const useStyles = makeStyles(() => ({
+  button: {
+    color: "blue",
+  },
+}));
+
 export const MainPage = (): ReactElement => {
+  const styles = useStyles();
+
   const [setGettingId, , ,] = useGetUserById();
   const [update, , ,] = useGetUsers();
   const [del, ,] = useDeleteUserById();
@@ -17,7 +26,7 @@ export const MainPage = (): ReactElement => {
 
   return (
     <>
-      <Button variant="outlined" onClick={(): void => setGettingId(1)}>
+      <Button className={styles.button} onClick={(): void => setGettingId(1)}>
         Get by id
       </Button>
       <Button variant="outlined" onClick={(): void => update()}>
