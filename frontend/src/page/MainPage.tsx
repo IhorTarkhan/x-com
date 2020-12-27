@@ -34,8 +34,6 @@ export const MainPage = (): ReactElement => {
   const winner = checkWinner(layout);
 
   const handleClick = (event: any) => {
-    console.log(event);
-    console.log(event);
     const i = xIsNext ? 3 : 5;
     const layoutState = [...layout];
     if (winner || layoutState[i]) return;
