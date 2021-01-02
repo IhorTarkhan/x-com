@@ -88,8 +88,9 @@ export const BattlegroundPage = (): ReactElement => {
         <Battleground
           xCount={xSize}
           yCount={ySize}
-          squareSize={70}
+          squareSize={130}
           fields={positions}
+          units={responseUnits}
           onClick={handleClickOnCell}
         />
       ) : (

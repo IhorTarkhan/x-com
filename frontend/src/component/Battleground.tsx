@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React, { ReactElement } from "react";
 import { Box } from "./Box";
 import { PositionDto } from "../dto/PositionDto";
+import { UnitDto } from "../dto/UnitDto";
 
 interface StiledProps {
   className?: string;
@@ -13,9 +14,13 @@ interface StiledProps {
 interface Props {
   onClick: ([x, y]: number[]) => void;
   fields: Array<PositionDto>;
+  units: Array<UnitDto>;
 }
 
 const Layout = (props: StiledProps & Props): ReactElement => {
+  const unitsByPosition = Object.fromEntries(
+    props.units.map(value => [[value.position.x, value.position.y], value])
+  );
   const getPair = (event: any): number[] => {
     const split = event.currentTarget.value.split(",");
     return [+split[0], +split[1]];
@@ -28,7 +33,8 @@ const Layout = (props: StiledProps & Props): ReactElement => {
           key={position.id}
           value={`${position.x},${position.y}`}
           onClick={event => props.onClick(getPair(event))}
-          content={position.type}
+          environment={position}
+          unit={unitsByPosition[`${position.x},${position.y}`]}
         />
       ))}
     </div>
