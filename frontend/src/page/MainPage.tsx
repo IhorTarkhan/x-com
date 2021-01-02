@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Layout } from "../component/Layout";
+import { Layout, Table, TestTable } from "../component/Layout";
 
 const useStyles = makeStyles(() => ({
   styles: {
@@ -39,8 +39,8 @@ export const MainPage = (): ReactElement => {
   const [xIsNext, setXisNext] = useState(true);
   const winner = checkWinner(layout);
 
-  const handleClick = (event: any) => {
-    const i = event.currentTarget.value;
+  const handleClick = (value: number) => {
+    const i = value;
     const layoutState = [...layout];
     if (winner || layoutState[i]) return;
     layoutState[i] = xIsNext ? "X" : "O";
@@ -51,6 +51,8 @@ export const MainPage = (): ReactElement => {
   return (
     <>
       <Layout boxes={layout} onClick={handleClick} />
+      <TestTable />
+      <Table />
       <div className={classes.styles}>
         <p className={classes.pStyle}>
           {winner

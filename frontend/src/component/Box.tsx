@@ -14,13 +14,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface Props {
-  onClick: (
-    event:
-      | React.MouseEvent<HTMLAnchorElement>
-      | React.MouseEvent<HTMLButtonElement>
-  ) => void;
+  onClick: (value: number) => void;
   content: any;
-  value: string;
+  value: number;
 }
 
 export const Box = (props: Props): ReactElement => {
@@ -29,7 +25,7 @@ export const Box = (props: Props): ReactElement => {
   return (
     <Button
       className={classes.button}
-      onClick={props.onClick}
+      onClick={event => props.onClick(+event.currentTarget.value)}
       value={props.value}
     >
       {props.content}
