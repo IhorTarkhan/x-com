@@ -22,6 +22,7 @@ export const useGetById = <RESPONSE_TYPE,>(
         let resp: RESPONSE_TYPE = (await axios.get(url + id)).data;
         setResponseData(resp);
       } catch (e) {
+        console.error(e);
         setError(e);
       }
       setIsLoading(false);

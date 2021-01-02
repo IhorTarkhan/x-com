@@ -19,6 +19,7 @@ export const useDeleteById = (
       try {
         await axios.delete(url + id);
       } catch (e) {
+        console.error(e);
         setError(e);
       }
       setIsLoading(false);

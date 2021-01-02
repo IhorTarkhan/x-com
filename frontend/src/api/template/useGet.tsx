@@ -21,6 +21,7 @@ export const useGet = <RESPONSE_TYPE,>(
         let resp: RESPONSE_TYPE = (await axios.get(url)).data;
         setResponseData(resp);
       } catch (e) {
+        console.error(e);
         setError(e);
       }
       setIsLoading(false);

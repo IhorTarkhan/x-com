@@ -23,6 +23,7 @@ export const usePut = <PUT_TYPE, RESPONSE_TYPE>(
         let resp: RESPONSE_TYPE = (await axios.put(url, puttingData)).data;
         setResponseData(resp);
       } catch (e) {
+        console.error(e);
         setError(e);
       }
       setIsLoading(false);

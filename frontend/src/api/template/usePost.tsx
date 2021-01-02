@@ -22,6 +22,7 @@ export const usePost = <POST_TYPE, RESPONSE_TYPE>(
         let resp: RESPONSE_TYPE = (await axios.post(url, postingData)).data;
         setResponseData(resp);
       } catch (e) {
+        console.error(e);
         setError(e);
       }
       setIsLoading(false);
