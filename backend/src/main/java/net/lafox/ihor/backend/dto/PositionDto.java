@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.lafox.ihor.backend.entity.PositionType;
 
 @Data
 @Builder
@@ -15,4 +16,5 @@ public class PositionDto {
   private Long id;
   private Integer x;
   private Integer y;
+  private PositionType type;
 }
