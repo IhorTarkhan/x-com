@@ -4,19 +4,16 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   button: {
-    background: "#fff",
     border: "2px solid lightblue",
-    fontSize: "30px",
     cursor: "pointer",
-    outline: "none",
-    fontWeight: 800
+    outline: "none"
   }
 }));
 
 interface Props {
-  onClick: (value: number) => void;
+  onClick: (value: any) => void;
   content: any;
-  value: number;
+  value: string | number;
 }
 
 export const Box = (props: Props): ReactElement => {
@@ -25,7 +22,7 @@ export const Box = (props: Props): ReactElement => {
   return (
     <Button
       className={classes.button}
-      onClick={event => props.onClick(+event.currentTarget.value)}
+      onClick={props.onClick}
       value={props.value}
     >
       {props.content}

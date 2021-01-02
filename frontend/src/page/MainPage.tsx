@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Layout, Table, TestTable } from "../component/Layout";
+import { Battleground } from "../component/BattlegroundXO";
 
 const useStyles = makeStyles(() => ({
   styles: {
@@ -50,9 +50,13 @@ export const MainPage = (): ReactElement => {
 
   return (
     <>
-      <Layout boxes={layout} onClick={handleClick} />
-      <TestTable />
-      <Table />
+      <Battleground
+        xCount={3}
+        yCount={3}
+        squareSize={100}
+        boxes={layout}
+        onClick={handleClick}
+      />
       <div className={classes.styles}>
         <p className={classes.pStyle}>
           {winner
