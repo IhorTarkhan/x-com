@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { useGetPositions } from "../api/positionApi";
+import { useGetPositions } from "../api/positionsApi";
 import { Battleground } from "../component/Battleground";
 import { PositionDto } from "../dto/PositionDto";
 import { Button } from "@material-ui/core";
