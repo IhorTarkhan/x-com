@@ -63,7 +63,7 @@ export const BattlegroundPage = (): ReactElement => {
     setPositions(positionInList);
   }
 
-  const handleClickButton = ([x, y]: number[]): void => {
+  const handleClickOnCell = ([x, y]: number[]): void => {
     alert(`x:${x} y:${y}`);
   };
 
@@ -75,12 +75,12 @@ export const BattlegroundPage = (): ReactElement => {
           yCount={ySize}
           squareSize={70}
           fields={positions}
-          onClick={handleClickButton}
+          onClick={handleClickOnCell}
         />
       ) : (
         "Loading..."
       )}
-      <Button onClick={() => updatePositions()}>Update fields</Button>
+      <Button onClick={updatePositions}>Update fields</Button>
     </>
   );
 };
