@@ -1,17 +1,17 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { root, test } from "./constant/routes";
+import { battlegroundRouting, homeRouting } from "./constant/routes";
 import { MainPage } from "./page/MainPage";
-import { TestPage } from "./page/TestPage";
+import { BattlegroundPage } from "./page/BattlegroundPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path={root} exact component={MainPage} />
-        <Route path={test} exact component={TestPage} />
+        <Route path={homeRouting} exact component={MainPage} />
+        <Route path={battlegroundRouting} exact component={BattlegroundPage} />
         <Route path={"*"}>
-          <Redirect to={root} />
+          <Redirect to={homeRouting} />
         </Route>
       </Switch>
     </BrowserRouter>

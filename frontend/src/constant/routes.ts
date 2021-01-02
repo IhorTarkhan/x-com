@@ -1,2 +1,2 @@
-export const root = "/";
-export const test = "/test";
+export const homeRouting = "/";
+export const battlegroundRouting = "/battleground";
