@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { Grenadier } from "../component/icon/Grenadier";
+import { Target } from "../component/icon/Target";
 
 const useStyles = makeStyles(() => ({
   green: {
@@ -30,6 +31,8 @@ export const MainPage = (): ReactElement => {
       >
         Battleground Page
       </Button>
+      <Target color={"#98D8E8"} size={"100px"} />
+      <Target color={"#FF0000"} size={"100px"} />
       <Grenadier color={"#98D8E8"} size={"100px"} />
       <Grenadier color={"#FF0000"} size={"100px"} />
     </>
