@@ -25,7 +25,7 @@ export const Ranger = (props: Props): ReactElement => {
           transform="matrix(0.7071 0.7071 -0.7071 0.7071 44.9846 -18.6315)"
           style={{
             fill: props.color,
-            stroke: "#000000",
+            stroke: "black",
             strokeWidth: 2.9422,
             strokeMiterlimit: 10
           }}

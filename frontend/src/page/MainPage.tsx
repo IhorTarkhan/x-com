@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { Grenadier } from "../component/icon/Grenadier";
 import { Target } from "../component/icon/Target";
 import { Ranger } from "../component/icon/Ranger";
+import { Sharpshooter } from "../component/icon/Sharpshooter";
 
 const useStyles = makeStyles(() => ({
   green: {
@@ -38,6 +39,8 @@ export const MainPage = (): ReactElement => {
       <Grenadier color={"#FF0000"} size={"100px"} />
       <Ranger color={"#98D8E8"} size={"100px"} />
       <Ranger color={"#FF0000"} size={"100px"} />
+      <Sharpshooter color={"#98D8E8"} size={"100px"} />
+      <Sharpshooter color={"#FF0000"} size={"100px"} />
     </>
   );
 };
