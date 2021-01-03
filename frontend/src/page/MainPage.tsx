@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import { Grenadier } from "../component/icon/Grenadier";
 
 const useStyles = makeStyles(() => ({
   green: {
@@ -29,6 +30,8 @@ export const MainPage = (): ReactElement => {
       >
         Battleground Page
       </Button>
+      <Grenadier color={"#98D8E8"} size={"100px"} />
+      <Grenadier color={"#FF0000"} size={"100px"} />
     </>
   );
 };
