@@ -4,6 +4,7 @@ import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { Grenadier } from "../component/icon/Grenadier";
 import { Target } from "../component/icon/Target";
+import { Ranger } from "../component/icon/Ranger";
 
 const useStyles = makeStyles(() => ({
   green: {
@@ -35,6 +36,8 @@ export const MainPage = (): ReactElement => {
       <Target color={"#FF0000"} size={"100px"} />
       <Grenadier color={"#98D8E8"} size={"100px"} />
       <Grenadier color={"#FF0000"} size={"100px"} />
+      <Ranger color={"#98D8E8"} size={"100px"} />
+      <Ranger color={"#FF0000"} size={"100px"} />
     </>
   );
 };
