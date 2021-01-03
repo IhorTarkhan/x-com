@@ -1,10 +1,11 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { Avatar, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { UnitDto } from "../dto/UnitDto";
 import { PositionDto } from "../dto/PositionDto";
 import { PositionType } from "../dto/PositionType";
 import { Unit } from "./Unit";
+import { Target } from "./icon/Target";
 
 const useStyles = makeStyles(() => ({
   button: {
@@ -51,9 +52,8 @@ export const Position = (props: Props): ReactElement => {
       disabled={!props.enabledToClick}
     >
       {props.unit && <Unit unit={props.unit} />}
-      {props.isTarget && (
-        <Avatar className={classes.target} src={"/images/icon_target.svg"} />
-      )}
+      {props.isTarget && <Target color={"red"} size={"80px"} />}
+      {props.isTarget && <Target color={"aqua"} size={"80px"} />}
     </Button>
   );
 };

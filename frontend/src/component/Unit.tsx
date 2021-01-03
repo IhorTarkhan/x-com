@@ -1,8 +1,11 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { UnitDto } from "../dto/UnitDto";
 import { UnitType } from "../dto/UnitType";
+import { Ranger } from "./icon/Ranger";
+import { Grenadier } from "./icon/Grenadier";
+import { Specialist } from "./icon/Specialist";
+import { Sharpshooter } from "./icon/Sharpshooter";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -35,17 +38,17 @@ interface Props {
 
 export const Unit = (props: Props): ReactElement => {
   const classes = useStyles();
-  const [imagePath, setImagePath] = useState<string>("");
+  const [avatar, setAvatar] = useState();
 
   useEffect(() => {
     if (+UnitType[props.unit.type] === UnitType.RANGER)
-      setImagePath("/images/icon_ranger.svg");
+      setAvatar(<Ranger color={"#98D8E8"} size={"60px"} />);
     else if (+UnitType[props.unit.type] === UnitType.SHARPSHOOTER)
-      setImagePath("/images/icon_sharpshooter.svg");
+      setAvatar(<Sharpshooter color={"#98D8E8"} size={"60px"} />);
     else if (+UnitType[props.unit.type] === UnitType.SPECIALIST)
-      setImagePath("/images/icon_specialist.svg");
+      setAvatar(<Specialist color={"#98D8E8"} size={"60px"} />);
     else if (+UnitType[props.unit.type] === UnitType.GRENADIER)
-      setImagePath("/images/icon_grenadier.svg");
+      setAvatar(<Grenadier color={"#98D8E8"} size={"60px"} />);
   }, [props.unit]);
 
   return (
@@ -53,11 +56,7 @@ export const Unit = (props: Props): ReactElement => {
       <span className={classes.health}>
         {props.unit.health}/{props.unit.maxHealth}
       </span>
-      <Avatar
-        className={classes.img}
-        src={imagePath}
-        alt={props.unit.type.toString()}
-      />
+      {avatar}
       <span className={classes.name}>{props.unit.name}</span>
     </div>
   );
