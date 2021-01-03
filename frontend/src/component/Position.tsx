@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { Button } from "@material-ui/core";
+import { Avatar, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { UnitDto } from "../dto/UnitDto";
 import { PositionDto } from "../dto/PositionDto";
@@ -10,14 +10,25 @@ const useStyles = makeStyles(() => ({
   button: {
     border: "2px solid lightblue",
     cursor: "pointer"
+  },
+  target: {
+    width: "120px",
+    height: "100px",
+    alignSelf: "center",
+    display: "block",
+    margin: "0 auto",
+    position: "absolute",
+    zIndex: 100
   }
 }));
 
 interface Props {
-  onClick: (value: any) => void;
   value: string;
+  onClick: (value: any) => void;
   environment: PositionDto;
   unit: UnitDto | undefined;
+  enabledToClick: boolean;
+  isTarget: boolean;
 }
 
 export const Position = (props: Props): ReactElement => {
@@ -37,9 +48,12 @@ export const Position = (props: Props): ReactElement => {
       onClick={props.onClick}
       value={props.value}
       style={{ backgroundColor: background }}
-      disabled={!props.unit}
+      disabled={!props.enabledToClick}
     >
-      {props.unit ? <Unit unit={props.unit} /> : undefined}
+      {props.unit && <Unit unit={props.unit} />}
+      {props.isTarget && (
+        <Avatar className={classes.target} src={"/images/icon_target.svg"} />
+      )}
     </Button>
   );
 };

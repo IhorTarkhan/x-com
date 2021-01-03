@@ -1,10 +1,8 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { Avatar, Button } from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { UnitDto } from "../dto/UnitDto";
-import { PositionDto } from "../dto/PositionDto";
 import { UnitType } from "../dto/UnitType";
-import { PositionType } from "../dto/PositionType";
 
 const useStyles = makeStyles(() => ({
   root: {

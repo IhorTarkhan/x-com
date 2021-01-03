@@ -35,6 +35,8 @@ const Layout = (props: StiledProps & Props): ReactElement => {
           onClick={event => props.onClick(getPair(event.currentTarget.value))}
           environment={position}
           unit={unitsByPosition[`${position.x},${position.y}`]}
+          enabledToClick={true}
+          isTarget={true}
         />
       ))}
     </div>
