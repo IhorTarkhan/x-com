@@ -6,6 +6,7 @@ import { Grenadier } from "../component/icon/Grenadier";
 import { Target } from "../component/icon/Target";
 import { Ranger } from "../component/icon/Ranger";
 import { Sharpshooter } from "../component/icon/Sharpshooter";
+import { Specialist } from "../component/icon/Specialist";
 
 const useStyles = makeStyles(() => ({
   green: {
@@ -41,6 +42,8 @@ export const MainPage = (): ReactElement => {
       <Ranger color={"#FF0000"} size={"100px"} />
       <Sharpshooter color={"#98D8E8"} size={"100px"} />
       <Sharpshooter color={"#FF0000"} size={"100px"} />
+      <Specialist color={"#98D8E8"} size={"100px"} />
+      <Specialist color={"#FF0000"} size={"100px"} />
     </>
   );
 };
