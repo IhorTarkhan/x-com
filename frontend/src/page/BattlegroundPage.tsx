@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { ReactElement, useEffect, useState } from "react";
 import { useGetPositions } from "../api/positionsApi";
 import { Battleground } from "../component/Battleground";
@@ -14,13 +15,13 @@ export const BattlegroundPage = (): ReactElement => {
     updatePositions,
     responsePositions,
     isPositionLoading,
-    positionsLoadingError
+    positionsLoadingError,
   ] = useGetPositions();
   const [
     updateUnits,
     responseUnits,
     isUnitsLoading,
-    unitsLoadingError
+    unitsLoadingError,
   ] = useGetUnits();
   const [positions, setPositions] = useState<Array<PositionDto>>([]);
   const [xSize, setXSize] = useState<number>(0);
@@ -31,24 +32,24 @@ export const BattlegroundPage = (): ReactElement => {
     const maxX =
       Math.max.apply(
         Math,
-        responsePositions.map(o => o.x)
+        responsePositions.map((o) => o.x),
       ) + 1;
     const maxY =
       Math.max.apply(
         Math,
-        responsePositions.map(o => o.y)
+        responsePositions.map((o) => o.y),
       ) + 1;
     const positionInList = responsePositions.sort(
-      (p1, p2) => p1.y * maxY + p1.x - (p2.y * maxY + p2.x)
+      (p1, p2) => p1.y * maxY + p1.x - (p2.y * maxY + p2.x),
     );
     positionInList
-      .map(p => p.y * maxY + p.x)
+      .map((p) => p.y * maxY + p.x)
       .forEach((value, index) => {
         if (value !== index) {
           console.error(
             "incorrect position list received",
             responsePositions,
-            positionInList
+            positionInList,
           );
           alert("incorrect position list received");
           history.push(homeRouting);

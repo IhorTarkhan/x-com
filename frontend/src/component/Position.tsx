@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { ReactElement, useEffect, useState } from "react";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,7 +11,7 @@ import { Target } from "./icon/Target";
 const useStyles = makeStyles(() => ({
   button: {
     border: "2px solid lightblue",
-    cursor: "pointer"
+    cursor: "pointer",
   },
   target: {
     width: "120px",
@@ -19,8 +20,8 @@ const useStyles = makeStyles(() => ({
     display: "block",
     margin: "0 auto",
     position: "absolute",
-    zIndex: 100
-  }
+    zIndex: 100,
+  },
 }));
 
 interface Props {

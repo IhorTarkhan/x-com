@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { ReactElement } from "react";
 
 interface Props {
@@ -27,7 +28,7 @@ export const Ranger = (props: Props): ReactElement => {
             fill: props.color,
             stroke: "black",
             strokeWidth: 2.9422,
-            strokeMiterlimit: 10
+            strokeMiterlimit: 10,
           }}
           width="60.7"
           height="60.7"

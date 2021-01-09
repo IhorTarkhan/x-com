@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { ReactElement, useEffect, useState } from "react";
 
 interface Props {
@@ -53,7 +54,7 @@ export const Specialist = (props: Props): ReactElement => {
             fill: mainColor,
             stroke: "black",
             strokeWidth: 2.9422,
-            strokeMiterlimit: 10
+            strokeMiterlimit: 10,
           }}
           width="60.7"
           height="60.7"
@@ -97,7 +98,7 @@ export const Specialist = (props: Props): ReactElement => {
               fill: "none",
               stroke: "black",
               strokeWidth: 1.0223,
-              strokeMiterlimit: 10
+              strokeMiterlimit: 10,
             }}
             cx="45.1"
             cy="45.1"

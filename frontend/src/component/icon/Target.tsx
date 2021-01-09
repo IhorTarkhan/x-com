@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { ReactElement } from "react";
 
 interface Props {
@@ -21,7 +22,7 @@ export const Target = (props: Props): ReactElement => {
         display: "block",
         margin: "0 auto",
         position: "absolute",
-        zIndex: 100
+        zIndex: 100,
       }}
       xmlSpace="preserve"
     >
@@ -30,7 +31,7 @@ export const Target = (props: Props): ReactElement => {
           style={{
             fill: "none",
             stroke: props.color,
-            strokeWidth: 5
+            strokeWidth: 5,
           }}
           cx="45"
           cy="45"

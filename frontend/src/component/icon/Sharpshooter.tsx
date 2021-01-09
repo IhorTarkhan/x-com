@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { ReactElement, useEffect, useState } from "react";
 
 interface Props {
@@ -53,7 +54,7 @@ export const Sharpshooter = (props: Props): ReactElement => {
             fill: mainColor,
             stroke: "black",
             strokeWidth: 2.9422,
-            strokeMiterlimit: 10
+            strokeMiterlimit: 10,
           }}
           width="60.7"
           height="60.7"
@@ -114,7 +115,7 @@ export const Sharpshooter = (props: Props): ReactElement => {
             fill: "none",
             stroke: lightColor,
             strokeWidth: 1.4711,
-            strokeMiterlimit: 10
+            strokeMiterlimit: 10,
           }}
           cx="205.9"
           cy="298.9"
@@ -130,7 +131,7 @@ export const Sharpshooter = (props: Props): ReactElement => {
             fill: mainColor,
             stroke: "black",
             strokeWidth: 2.9422,
-            strokeMiterlimit: 10
+            strokeMiterlimit: 10,
           }}
           width="60.7"
           height="60.7"
@@ -191,7 +192,7 @@ export const Sharpshooter = (props: Props): ReactElement => {
             fill: "none",
             stroke: lightColor,
             strokeWidth: 1.4711,
-            strokeMiterlimit: 10
+            strokeMiterlimit: 10,
           }}
           cx="44.9"
           cy="44.9"

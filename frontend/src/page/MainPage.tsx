@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { ReactElement } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
@@ -10,8 +11,8 @@ import { Specialist } from "../component/icon/Specialist";
 
 const useStyles = makeStyles(() => ({
   green: {
-    color: "green"
-  }
+    color: "green",
+  },
 }));
 
 export const MainPage = (): ReactElement => {

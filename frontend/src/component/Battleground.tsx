@@ -1,5 +1,6 @@
-import styled from "styled-components";
+// eslint-disable-next-line
 import React, { ReactElement } from "react";
+import styled from "styled-components";
 import { Position } from "./Position";
 import { PositionDto } from "../dto/PositionDto";
 import { UnitDto } from "../dto/UnitDto";
@@ -19,7 +20,7 @@ interface Props {
 
 const Layout = (props: StiledProps & Props): ReactElement => {
   const unitsByPosition = Object.fromEntries(
-    props.units.map(unit => [`${unit.position.x},${unit.position.y}`, unit])
+    props.units.map((unit) => [`${unit.position.x},${unit.position.y}`, unit]),
   );
   const getPair = (value: string): [number, number] => {
     const split = value.split(",");
@@ -28,11 +29,11 @@ const Layout = (props: StiledProps & Props): ReactElement => {
 
   return (
     <div className={props.className}>
-      {props.fields.map(position => (
+      {props.fields.map((position) => (
         <Position
           key={`${position.x},${position.y}`}
           value={`${position.x},${position.y}`}
-          onClick={event => props.onClick(getPair(event.currentTarget.value))}
+          onClick={(event) => props.onClick(getPair(event.currentTarget.value))}
           environment={position}
           unit={unitsByPosition[`${position.x},${position.y}`]}
           enabledToClick={true}
@@ -46,7 +47,10 @@ const Layout = (props: StiledProps & Props): ReactElement => {
 export const Battleground = styled(Layout)`
   margin: auto;
   display: grid;
-  width: ${props => props.xCount * props.squareSize}px;
-  height: ${props => props.yCount * props.squareSize}px;
-  grid-template: repeat(${p => p.yCount}, 1fr) / repeat(${p => p.xCount}, 1fr);
+  width: ${(props) => props.xCount * props.squareSize}px;
+  height: ${(props) => props.yCount * props.squareSize}px;
+  grid-template: repeat(${(p) => p.yCount}, 1fr) / repeat(
+      ${(p) => p.xCount},
+      1fr
+    );
 `;

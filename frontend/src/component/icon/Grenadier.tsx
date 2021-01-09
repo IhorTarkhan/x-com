@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { ReactElement, useEffect, useState } from "react";
 
 interface Props {
@@ -57,7 +58,7 @@ export const Grenadier = (props: Props): ReactElement => {
               fill: mainColor,
               stroke: "black",
               strokeWidth: 3.6798,
-              strokeMiterlimit: 10
+              strokeMiterlimit: 10,
             }}
             points="56.3,109.9 2.6,56.3 56.3,2.6
 			109.9,56.3 		"
@@ -108,7 +109,7 @@ export const Grenadier = (props: Props): ReactElement => {
             fill: mainColor,
             stroke: "black",
             strokeWidth: 2.5014,
-            strokeMiterlimit: 10
+            strokeMiterlimit: 10,
           }}
           d="M81.6,40.5c0-7.2-7.5-13-16.8-13
 		c-0.3,0-0.5,0-0.8,0c-2.6-1.4-5.8-2.2-9.2-2.2c-3.6,0-6.8,0.9-9.5,2.4c-8.7,0.6-15.5,6.3-15.5,13.1c0,2,0.6,3.8,1.6,5.5
@@ -121,7 +122,7 @@ export const Grenadier = (props: Props): ReactElement => {
             fill: mainColor,
             stroke: "black",
             strokeWidth: 1.0846,
-            strokeMiterlimit: 10
+            strokeMiterlimit: 10,
           }}
           d="M66.2,82.4c-0.6,0-1.1,0.3-1.3,0.8
 		c-0.4-0.5-0.9-0.8-1.6-0.8c-0.5,0-1,0.2-1.4,0.6c-0.2-0.4-0.7-0.7-1.2-0.7c-0.4,0-0.8,0.2-1.1,0.6c-0.4-0.6-1-1.1-1.8-1.1
@@ -150,7 +151,7 @@ export const Grenadier = (props: Props): ReactElement => {
             fill: "none",
             stroke: "black",
             strokeWidth: 1.2507,
-            strokeMiterlimit: 10
+            strokeMiterlimit: 10,
           }}
           d="M39.6,35.3c0,0-5.9,3.5-2.5,6.3
 		c0,0-0.6,1.5,1.3,1.6c0,0,1.4,3,3.4,1.5c0,0,3.1,2.2,5.4-0.5"
@@ -160,7 +161,7 @@ export const Grenadier = (props: Props): ReactElement => {
             fill: "none",
             stroke: "black",
             strokeWidth: 1.2507,
-            strokeMiterlimit: 10
+            strokeMiterlimit: 10,
           }}
           d="M55.6,36.8c0,0,0.9-2.4,2.9-1.1
 		c0,0,1.9-4.2,4.4-0.6c0,0,2.9-6,5.5,0.1"
@@ -170,7 +171,7 @@ export const Grenadier = (props: Props): ReactElement => {
             fill: "none",
             stroke: "black",
             strokeWidth: 1.2507,
-            strokeMiterlimit: 10
+            strokeMiterlimit: 10,
           }}
           d="M62.1,45.5c0,0,6.2,4.9,13.3-2.7"
         />
