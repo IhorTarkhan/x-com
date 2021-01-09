@@ -11,12 +11,12 @@ const useStyles = makeStyles(() => ({
   root: {
     verticalAlign: "top",
     display: "inline-block",
-    textAlign: "center"
+    textAlign: "center",
   },
   health: {
     display: "block",
     fontSize: "12px",
-    color: "red"
+    color: "red",
   },
   img: {
     width: "60px",
@@ -24,12 +24,12 @@ const useStyles = makeStyles(() => ({
     alignSelf: "center",
     backgroundColor: "grey",
     display: "block",
-    margin: "0 auto"
+    margin: "0 auto",
   },
   name: {
     display: "block",
-    fontSize: "12px"
-  }
+    fontSize: "12px",
+  },
 }));
 
 interface Props {
@@ -38,7 +38,7 @@ interface Props {
 
 export const Unit = (props: Props): ReactElement => {
   const classes = useStyles();
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState<object>();
 
   useEffect(() => {
     if (+UnitType[props.unit.type] === UnitType.RANGER)

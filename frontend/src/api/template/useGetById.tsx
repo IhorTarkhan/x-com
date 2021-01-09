@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export const useGetById = <RESPONSE_TYPE,>(
-  url: string
+  url: string,
 ): [
   (id: number) => void,
   RESPONSE_TYPE | undefined,
   boolean | undefined,
-  { message: string } | undefined
+  { message: string } | undefined,
 ] => {
   const [responseData, setResponseData] = useState<RESPONSE_TYPE>();
   const [isLoading, setIsLoading] = useState<boolean>();
@@ -19,7 +19,7 @@ export const useGetById = <RESPONSE_TYPE,>(
     const getData = async (id: number) => {
       setIsLoading(true);
       try {
-        let resp: RESPONSE_TYPE = (await axios.get(url + id)).data;
+        let resp = (await axios.get(url + id)).data;
         setResponseData(resp);
       } catch (e) {
         console.error(e);
