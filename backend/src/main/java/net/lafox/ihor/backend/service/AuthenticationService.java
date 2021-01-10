@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.lafox.ihor.backend.dto.SignInRequest;
 import net.lafox.ihor.backend.dto.SignInResponse;
-import net.lafox.ihor.backend.repository.AdminUserRepository;
-import net.lafox.ihor.backend.security.AdminJwtTokenProvider;
+import net.lafox.ihor.backend.repository.PlayerRepository;
+import net.lafox.ihor.backend.security.JwtTokenProvider;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,12 +17,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
-    private final AdminUserRepository adminRepository;
-    private final AdminJwtTokenProvider tokenProvider;
+    private final PlayerRepository adminRepository;
+    private final JwtTokenProvider tokenProvider;
 
     public SignInResponse login(SignInRequest request) {
         Authentication auth = getAuthenticate(request.getEmail(), request.getPassword());
-        checkVerified(request.getEmail());
         SecurityContextHolder.getContext().setAuthentication(auth);
         return generateResponse(auth);
     }
@@ -30,11 +29,6 @@ public class AuthenticationService {
     private Authentication getAuthenticate(String email, String password) {
         return authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(email, password));
-    }
-
-    private void checkVerified(String email) {
-        if (!adminRepository.isVerified(email))
-            throw new RuntimeException(email + " is not verified! Please, verify your email!");
     }
 
     private SignInResponse generateResponse(Authentication auth) {

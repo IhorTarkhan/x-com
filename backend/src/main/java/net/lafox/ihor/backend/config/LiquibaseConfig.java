@@ -2,6 +2,7 @@ package net.lafox.ihor.backend.config;
 
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -18,7 +19,7 @@ public class LiquibaseConfig {
   private final DataSource dataSource;
 
   @Autowired
-  public LiquibaseConfig(DataSource dataSource) {
+  public LiquibaseConfig(@Qualifier("dataSource") DataSource dataSource) {
     this.dataSource = dataSource;
   }
 
