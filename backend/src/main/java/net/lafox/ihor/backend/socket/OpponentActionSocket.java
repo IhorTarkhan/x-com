@@ -1,5 +1,6 @@
 package net.lafox.ihor.backend.socket;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.java_websocket.WebSocket;
@@ -26,6 +27,9 @@ public class OpponentActionSocket extends WebSocketServer {
                 Collectors.toMap(
                     s -> s.substring(0, s.indexOf("=")), s -> s.substring(s.indexOf("=") + 1)));
     String userCookie;
+
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.readValue("", Object.class);
     userCookie = mapCookies.getOrDefault("x-com", "111");
     webSocket.send(userCookie);
   }

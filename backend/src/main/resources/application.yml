@@ -1,3 +1,5 @@
+# To use your properties:
+# Program arguments: --spring.config.additional-location=/path/to/external-application.yml
 server:
   address: 127.0.0.1
   port: 8080
@@ -5,9 +7,9 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/xcom
-    username: postgres
-    password: postgres
+    url: # external
+    username: # external
+    password: # external
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       maximum-pool-size: 100
@@ -32,8 +34,9 @@ spring:
 liquibase:
   manual: true
 
-cors:
-  enabled: true
+jwt:
+  secret: # external
+  expirationInMs: # external
 
 socket:
-  port: 9000
+  port: # external
