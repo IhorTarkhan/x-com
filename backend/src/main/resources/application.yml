@@ -18,7 +18,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
     properties:
       hibernate:
         hbm2ddl:
@@ -26,7 +25,6 @@ spring:
   liquibase:
     enabled: false
     change-log: classpath:changelog.xml
-
   jackson:
     serialization:
       write_dates_as_timestamps: false
@@ -34,8 +32,8 @@ spring:
 liquibase:
   manual: true
 
-test:
-  response: some text
-
 cors:
   enabled: true
+
+socket:
+  port: 9000

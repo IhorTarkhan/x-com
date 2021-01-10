@@ -12,7 +12,7 @@ function App() {
       <Switch>
         <Route path={homeRouting} exact component={MainPage} />
         <Route path={battlegroundRouting} exact component={BattlegroundPage} />
-        <Route path={"socket"} exact component={SocketPage} />
+        <Route path={"/socket"} exact component={SocketPage} />
         <Route path={"*"}>
           <Redirect to={homeRouting} />
         </Route>

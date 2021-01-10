@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "test")
-public class TestProperties {
-  private String response;
+@ConfigurationProperties(prefix = "socket")
+public class SocketProperties {
+  private Integer port;
 }
