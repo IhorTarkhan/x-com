@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { Position } from "./Position";

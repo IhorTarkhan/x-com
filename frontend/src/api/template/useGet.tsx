@@ -12,7 +12,7 @@ export const useGet = <RESPONSE_TYPE,>(
   const [responseData, setResponseData] = useState<RESPONSE_TYPE>();
   const [isLoading, setIsLoading] = useState<boolean>();
   const [error, setError] = useState<{ message: string }>();
-  const [update, setUpdate] = useState<{}>({});
+  const [update, setUpdate] = useState<any>({});
 
   useEffect(() => {
     const getData = async () => {

@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import React, { ReactElement, useEffect, useState } from "react";
 import { useGetPositions } from "../api/positionsApi";
 import { Battleground } from "../component/Battleground";

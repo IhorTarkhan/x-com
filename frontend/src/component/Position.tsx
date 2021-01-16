@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import React, { ReactElement, useEffect, useState } from "react";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";

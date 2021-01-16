@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export const useDeleteById = (
-  url: string
+  url: string,
 ): [
   (id: number) => void,
   boolean | undefined,
-  { message: string } | undefined
+  { message: string } | undefined,
 ] => {
   const [isLoading, setIsLoading] = useState<boolean>();
   const [error, setError] = useState<{ message: string }>();
@@ -25,7 +25,7 @@ export const useDeleteById = (
       setIsLoading(false);
     };
     getData(deletingId);
-  }, [url, deletingId]);
+  }, [deletingId]);
 
   return [setGettingId, isLoading, error];
 };

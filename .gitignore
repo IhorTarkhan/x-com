@@ -1,8 +1,11 @@
-HELP.md
+### Back End ###
 backend/target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+
+### Front End ###
+frontend/node_modules
+frontend/build
+frontend/.eslintcache
+frontend/package-lock.json
 
 ### STS ###
 .apt_generated

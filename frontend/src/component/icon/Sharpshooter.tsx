@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import React, { ReactElement, useEffect, useState } from "react";
 
 interface Props {
