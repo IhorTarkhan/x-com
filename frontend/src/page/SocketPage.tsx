@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { Button, TextField } from "@material-ui/core";
+import { NavigationPanel } from "../component/NavigationPanel";
 
 export const SocketPage = (): ReactElement => {
   const [socket, setSocket] = useState<WebSocket>();
@@ -38,6 +39,7 @@ export const SocketPage = (): ReactElement => {
 
   return (
     <>
+      <NavigationPanel />
       <Button onClick={openSocket} color="primary">
         Open
       </Button>

@@ -7,6 +7,7 @@ import { Target } from "../component/icon/Target";
 import { Ranger } from "../component/icon/Ranger";
 import { Sharpshooter } from "../component/icon/Sharpshooter";
 import { Specialist } from "../component/icon/Specialist";
+import { NavigationPanel } from "../component/NavigationPanel";
 
 const useStyles = makeStyles(() => ({
   green: {
@@ -25,6 +26,7 @@ export const MainPage = (): ReactElement => {
 
   return (
     <>
+      <NavigationPanel />
       Hello <i>X-COM</i>
       <br />
       <Button

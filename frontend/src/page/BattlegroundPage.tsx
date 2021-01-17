@@ -6,6 +6,7 @@ import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { homeRouting } from "../constant/routes";
 import { useGetUnits } from "../api/unitsApi";
+import { NavigationPanel } from "../component/NavigationPanel";
 
 export const BattlegroundPage = (): ReactElement => {
   const history = useHistory();
@@ -31,15 +32,15 @@ export const BattlegroundPage = (): ReactElement => {
     const maxX =
       Math.max.apply(
         Math,
-        responsePositions.map((o) => o.x),
+        responsePositions.map((o) => o.x)
       ) + 1;
     const maxY =
       Math.max.apply(
         Math,
-        responsePositions.map((o) => o.y),
+        responsePositions.map((o) => o.y)
       ) + 1;
     const positionInList = responsePositions.sort(
-      (p1, p2) => p1.y * maxY + p1.x - (p2.y * maxY + p2.x),
+      (p1, p2) => p1.y * maxY + p1.x - (p2.y * maxY + p2.x)
     );
     positionInList
       .map((p) => p.y * maxY + p.x)
@@ -48,7 +49,7 @@ export const BattlegroundPage = (): ReactElement => {
           console.error(
             "incorrect position list received",
             responsePositions,
-            positionInList,
+            positionInList
           );
           alert("incorrect position list received");
           history.push(homeRouting);
@@ -81,6 +82,7 @@ export const BattlegroundPage = (): ReactElement => {
 
   return (
     <>
+      <NavigationPanel />
       {!!positions &&
       !!responseUnits &&
       !isPositionLoading &&
