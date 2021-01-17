@@ -26,7 +26,7 @@ public class JwtTokenProvider {
 
     return Jwts.builder()
         .setSubject(playerPrincipal.getUsername())
-        .setIssuedAt(new Date())
+        .setIssuedAt(now)
         .setExpiration(expiryDate)
         .signWith(SignatureAlgorithm.HS512, jwtProperties.getKey())
         .compact();

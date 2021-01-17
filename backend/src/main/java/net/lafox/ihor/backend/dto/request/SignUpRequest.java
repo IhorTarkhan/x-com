@@ -1,4 +1,4 @@
-package net.lafox.ihor.backend.dto;
+package net.lafox.ihor.backend.dto.request;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonSerialize
-public class SignInRequest {
+public class SignUpRequest {
   private String email;
   private String password;
 }

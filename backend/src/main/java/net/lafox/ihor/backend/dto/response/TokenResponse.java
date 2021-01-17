@@ -1,4 +1,4 @@
-package net.lafox.ihor.backend.dto;
+package net.lafox.ihor.backend.dto.response;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
@@ -8,7 +8,7 @@ import lombok.*;
 @ToString
 @RequiredArgsConstructor
 @JsonSerialize
-public class SignInResponse {
+public class TokenResponse {
   @NonNull private String accessToken;
   private String tokenType = "Bearer";
 }

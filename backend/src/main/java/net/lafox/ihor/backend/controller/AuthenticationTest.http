@@ -1,5 +1,5 @@
 # 403
-POST http://localhost:8080/login
+POST http://localhost:8080/sign-in
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
 
 ###
 # 200
-POST http://localhost:8080/login
+POST http://localhost:8080/sign-in
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 ###
 # 403
 GET http://localhost:8080/test-authorize
-Authorization: Bearer "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QGFjY291bnQiLCJpYXQiOjE2MTAyOTkyMTcsImV4cCI6MTYxMDM4NTYxN30"
+#Authorization: Bearer "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QGFjY291bnQiLCJpYXQiOjE2MTAyOTkyMTcsImV4cCI6MTYxMDM4NTYxN30"
 Content-Type: application/json
 
 ###
