@@ -16,18 +16,19 @@ Content-Type: application/json
   "email": "test@account",
   "password": "password"
 }
-> {% client.global.set("auth_token", response.body.accessToken); %}
+> {% client.global.set("Player-Authorization", response.body.accessToken); %}
+
 
 ###
 # 200
 GET http://localhost:8080/test-authorize
-Authorization: Bearer {{auth_token}}
+Player-Authorization: {{Player-Authorization}}
 Content-Type: application/json
 
 ###
 # 403
-GET http://localhost:8080/test-authorize
-#Authorization: Bearer "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QGFjY291bnQiLCJpYXQiOjE2MTAyOTkyMTcsImV4cCI6MTYxMDM4NTYxN30"
+GET http://localhost:8080/test2
+player_authorization: Bearer "invalid jwt"
 Content-Type: application/json
 
 ###

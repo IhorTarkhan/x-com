@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder;
 public final class JsonUtil {
   private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-  public static String prettyJson(Object obj) {
+  public static String json(Object obj) {
     return gson.toJson(obj);
   }
 }

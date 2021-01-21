@@ -3,7 +3,7 @@ package net.lafox.ihor.backend.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.lafox.ihor.backend.dto.request.SignInRequest;
-import net.lafox.ihor.backend.dto.response.TokenResponse;
+import net.lafox.ihor.backend.dto.response.LoginResponse;
 import net.lafox.ihor.backend.dto.request.SignUpRequest;
 import net.lafox.ihor.backend.entity.Player;
 import net.lafox.ihor.backend.repository.PlayerRepository;
@@ -23,12 +23,12 @@ public class AuthenticationService {
   private final JwtTokenProvider tokenProvider;
   private final PasswordEncoder passwordEncoder;
 
-  public TokenResponse signIn(SignInRequest request) {
+  public LoginResponse signIn(SignInRequest request) {
     Authentication auth = getAuthenticate(request.getEmail(), request.getPassword());
     return generateToken(auth);
   }
 
-  public TokenResponse signUp(SignUpRequest request) {
+  public LoginResponse signUp(SignUpRequest request) {
     Player newPlayer =
         Player.builder()
             .email(request.getEmail())
@@ -44,8 +44,8 @@ public class AuthenticationService {
         new UsernamePasswordAuthenticationToken(email, password));
   }
 
-  private TokenResponse generateToken(Authentication auth) {
+  private LoginResponse generateToken(Authentication auth) {
     String jwt = tokenProvider.generateToken(auth);
-    return new TokenResponse(jwt);
+    return new LoginResponse(jwt);
   }
 }

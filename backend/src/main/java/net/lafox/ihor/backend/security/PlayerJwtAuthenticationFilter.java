@@ -2,8 +2,6 @@ package net.lafox.ihor.backend.security;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.lafox.ihor.backend.exception.jwt.ExpiredException;
-import net.lafox.ihor.backend.exception.jwt.JwtTokenException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,12 +35,12 @@ public class PlayerJwtAuthenticationFilter extends OncePerRequestFilter {
         setAuthentication(request, userDetails);
       }
       filterChain.doFilter(request, response);
-    } catch (ExpiredException exception) {
-      response.setStatus(HttpStatus.GONE.value());
     } catch (JwtTokenException exception) {
       response.setStatus(HttpStatus.UNAUTHORIZED.value());
+      response.setHeader("Jwt-Error", exception.getMessage());
     } catch (RuntimeException exception) {
       response.setStatus(HttpStatus.BAD_REQUEST.value());
+      response.setHeader("Runtime-Error", exception.getMessage());
     }
   }
 
@@ -63,10 +61,6 @@ public class PlayerJwtAuthenticationFilter extends OncePerRequestFilter {
   }
 
   private String getJwtFromHeader(HttpServletRequest request) {
-    String bearerToken = request.getHeader("Authorization");
-    if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-      return bearerToken.substring(7);
-    }
-    return null;
+    return request.getHeader("Player-Authorization");
   }
 }

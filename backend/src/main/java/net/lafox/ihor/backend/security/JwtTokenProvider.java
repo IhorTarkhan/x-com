@@ -3,8 +3,6 @@ package net.lafox.ihor.backend.security;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import net.lafox.ihor.backend.exception.jwt.ExpiredException;
-import net.lafox.ihor.backend.exception.jwt.JwtTokenException;
 import net.lafox.ihor.backend.property.JwtProperties;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -44,19 +42,19 @@ public class JwtTokenProvider {
       StringUtils.hasText(authToken);
     } catch (SignatureException ex) {
       log.error("Invalid JWT signature");
-      throw new JwtTokenException();
+      throw new JwtTokenException("Invalid JWT signature");
     } catch (MalformedJwtException ex) {
       log.error("Invalid JWT token");
-      throw new JwtTokenException();
+      throw new JwtTokenException("Invalid JWT token");
     } catch (ExpiredJwtException ex) {
       log.error("Expired JWT token");
-      throw new ExpiredException();
+      throw new JwtTokenException("Expired JWT token");
     } catch (UnsupportedJwtException ex) {
       log.error("Unsupported JWT token");
-      throw new JwtTokenException();
+      throw new JwtTokenException("Unsupported JWT token");
     } catch (IllegalArgumentException ex) {
-      log.error("JWT claims string is empty.");
-      throw new JwtTokenException();
+      log.error("JWT claims string is empty");
+      throw new JwtTokenException("JWT claims string is empty");
     }
   }
 }

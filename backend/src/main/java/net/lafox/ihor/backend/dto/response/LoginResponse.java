@@ -8,7 +8,6 @@ import lombok.*;
 @ToString
 @RequiredArgsConstructor
 @JsonSerialize
-public class TokenResponse {
-  @NonNull private String accessToken;
-  private String tokenType = "Bearer";
+public class LoginResponse {
+  private final String accessToken;
 }
