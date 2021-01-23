@@ -1,5 +1,5 @@
 import { useGet } from "./template/useGet";
-import { HOST } from "../constant/environment-variables";
+import { host } from "../constant/url";
 import { UnitDto } from "../dto/UnitDto";
 
-export const useGetUnits = () => useGet<Array<UnitDto>>(HOST + "/units");
+export const useGetUnits = () => useGet<Array<UnitDto>>(host + "/units");

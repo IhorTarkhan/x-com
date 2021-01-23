@@ -1,19 +1,25 @@
 package net.lafox.ihor.backend.config;
 
-import lombok.RequiredArgsConstructor;
-import net.lafox.ihor.backend.property.SocketProperties;
-import net.lafox.ihor.backend.socket.OpponentActionSocket;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-import javax.annotation.PostConstruct;
+import static net.lafox.ihor.backend.config.GlobalCorsConfig.getAllowedOrigins;
 
-@Component
-@RequiredArgsConstructor
-public class SocketConfig {
-  private final SocketProperties socketProperties;
+@Configuration
+@EnableWebSocketMessageBroker
+public class SocketConfig implements WebSocketMessageBrokerConfigurer {
+  public static final String WEBSOCKET_BROKER_URL = "/wsb";
 
-  @PostConstruct
-  void startOpponentActionSocket() {
-    new OpponentActionSocket(socketProperties.getPort()).start();
+  @Override
+  public void registerStompEndpoints(StompEndpointRegistry registry) {
+    registry.addEndpoint("/ws").setAllowedOrigins(getAllowedOrigins()).withSockJS();
+  }
+
+  @Override
+  public void configureMessageBroker(MessageBrokerRegistry registry) {
+    registry.setApplicationDestinationPrefixes("/ws").enableSimpleBroker(WEBSOCKET_BROKER_URL);
   }
 }

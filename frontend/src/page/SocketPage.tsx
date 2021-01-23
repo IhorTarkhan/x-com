@@ -1,40 +1,43 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import { NavigationPanel } from "../component/NavigationPanel";
+import SockJS from "sockjs-client";
+import { CompatClient, Stomp } from "@stomp/stompjs";
+import { host, websocketUrl, websocketBrokerUrl } from "../constant/url";
 
 export const SocketPage = (): ReactElement => {
-  const [socket, setSocket] = useState<WebSocket>();
+  const [client, setClient] = useState<CompatClient | undefined>();
   const [name, setName] = useState<string>();
 
   useEffect(() => {
-    if (!socket) return;
+    if (!client) return;
+    client.connect({}, () => {
+      client.subscribe(`${websocketBrokerUrl}/2`, (resp: any) => {
+        console.warn(resp.body);
+      });
+    });
+  }, [client]);
 
-    socket.onopen = (ev) => {
-      console.log("open", ev);
-    };
-    socket.onmessage = (ev) => {
-      console.log("message", ev);
-    };
-    socket.onerror = (ev) => {
-      console.log("error", ev);
-    };
-    socket.onclose = (ev) => {
-      console.log("close", ev);
-    };
-  }, [socket]);
   const openSocket = () => {
-    setSocket(new WebSocket("ws://localhost:9000"));
+    const connection = new SockJS(`${host}${websocketUrl}`);
+    connection.onerror = (ev: any) => console.error(ev);
+    setClient(Stomp.over(() => connection));
   };
 
   const closeSocket = () => {
-    if (socket) socket.close();
-    else alert("notOpen");
+    client?.disconnect();
+    setClient(undefined);
   };
 
   const sendSocket = () => {
-    console.log(socket);
-    if (socket) socket.send("some text");
-    else alert("notOpen");
+    client?.send(
+      `${websocketUrl}/d/1`,
+      {},
+      JSON.stringify({
+        email: "from",
+        password: "text",
+      })
+    );
   };
 
   return (
