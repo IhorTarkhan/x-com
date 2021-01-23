@@ -13,16 +13,21 @@ const useStyles = makeStyles((theme) => ({
     position: "static",
     background: "white",
     boxShadow: theme.shadows[0],
-  },
-  logo: {
-    width: theme.spacing(20),
-    height: theme.spacing(15),
-  },
-  linkStyle: {
-    flexGrow: 1,
-    fontSize: "1.5em",
-    fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
-    color: "black",
+    "& img": {
+      width: theme.spacing(20),
+      height: theme.spacing(15),
+    },
+    "& a": {
+      flexGrow: 1,
+      fontSize: "1.5em",
+      fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
+      color: "black",
+    },
+    "& button": {
+      fontSize: "1.2em",
+      width: "10vw",
+      height: "10vw",
+    },
   },
 }));
 
@@ -32,16 +37,12 @@ export const NavigationPanel = (): ReactElement => {
   return (
     <AppBar className={classes.root}>
       <Toolbar>
-        <NavLink to={homeRouting} className={classes.linkStyle}>
-          <img src={"logo.svg"} className={classes.logo} alt={""} />
+        <NavLink to={homeRouting}>
+          <img src={"logo.svg"} alt={"XCOM online"} />
         </NavLink>
-        <Link to={battlegroundRouting} className={classes.linkStyle}>
-          Battleground
-        </Link>
-        <NavLink to={socketRouting} className={classes.linkStyle}>
-          Socket
-        </NavLink>
-        <Button className={classes.linkStyle}>Login</Button>
+        <Link to={battlegroundRouting}>Battleground</Link>
+        <NavLink to={socketRouting}>Socket</NavLink>
+        <Button>Login</Button>
       </Toolbar>
     </AppBar>
   );
