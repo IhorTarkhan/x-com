@@ -3,9 +3,10 @@ package net.lafox.ihor.backend.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.lafox.ihor.backend.dto.request.SignInRequest;
-import net.lafox.ihor.backend.dto.response.LoginResponse;
 import net.lafox.ihor.backend.dto.request.SignUpRequest;
+import net.lafox.ihor.backend.dto.response.LoginResponse;
 import net.lafox.ihor.backend.entity.Player;
+import net.lafox.ihor.backend.exception.conflict_409.ConflictException;
 import net.lafox.ihor.backend.repository.PlayerRepository;
 import net.lafox.ihor.backend.security.JwtTokenProvider;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,6 +30,9 @@ public class AuthenticationService {
   }
 
   public LoginResponse signUp(SignUpRequest request) {
+    if (playerRepository.existsByEmail(request.getEmail()))
+      throw new ConflictException(String.format("Username '%s' already taken", request.getEmail()));
+
     Player newPlayer =
         Player.builder()
             .email(request.getEmail())
