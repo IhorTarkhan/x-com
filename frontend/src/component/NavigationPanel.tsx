@@ -1,50 +1,117 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link, NavLink } from "react-router-dom";
-import { AppBar, Toolbar } from "@material-ui/core";
 import {
-  battlegroundRouting,
-  homeRouting,
-  socketRouting,
-} from "../constant/routes";
-import { Authorisation } from "./Authorisation";
+  AppBar,
+  Button,
+  Divider,
+  IconButton,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons";
+import MenuIcon from "@material-ui/icons/Menu";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { NavigationMenu } from "./NavigationMenu";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  appBar: {
     position: "static",
-    background: "white",
-    boxShadow: theme.shadows[0],
-    "& img": {
-      width: theme.spacing(20),
-      height: theme.spacing(15),
-    },
-    "& a": {
+    "& p": {
+      ...theme.typography.h6,
       flexGrow: 1,
-      fontSize: "1.5vw",
-      fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
-      color: "black",
+      paddingLeft: theme.spacing(2),
     },
     "& button": {
-      fontSize: "1.2vw",
-      width: "8vw",
-      height: "8vw",
+      ...theme.typography.body1,
+      color: "inherit",
+      padding: theme.spacing(1),
     },
+  },
+  userMenu: {
+    width: "25vw",
+    "& svg": { paddingRight: theme.spacing(1) },
   },
 }));
 
+export const LoginUserFields = (props: { logout: () => void }) => {
+  const classes = useStyles();
+  const [open, setOpen] = useState<boolean>(false);
+
+  const handleMenu = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleLogout = () => {
+    handleClose();
+    props.logout();
+  };
+  return (
+    <>
+      <IconButton id={"avatar-id"} onClick={handleMenu}>
+        <AccountCircle />
+      </IconButton>
+      <Menu
+        anchorEl={document.getElementById("avatar-id")}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        className={classes.userMenu}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}>
+          <AccountCircle />
+          My account
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleLogout}>
+          <ExitToAppIcon />
+          Logout
+        </MenuItem>
+      </Menu>
+    </>
+  );
+};
+
+export const NotLoginUserFields = (props: { login: () => void }) => {
+  return (
+    <>
+      <Button onClick={props.login}>Sign In</Button>
+      <Button onClick={props.login}>Sign Up</Button>
+    </>
+  );
+};
+
 export const NavigationPanel = (): ReactElement => {
   const classes = useStyles();
+  const [isNavigationMenuOpen, setNavigationMenuOpen] = useState(false);
+  const [auth, setAuth] = useState<boolean>(true);
 
   return (
     <>
-      <AppBar className={classes.root}>
+      <NavigationMenu
+        isOpen={isNavigationMenuOpen}
+        close={() => setNavigationMenuOpen(false)}
+      />
+      <AppBar className={classes.appBar}>
         <Toolbar>
-          <NavLink to={homeRouting}>
-            <img src={"logo.svg"} alt={"XCOM online"} />
-          </NavLink>
-          <Link to={battlegroundRouting}>Battleground</Link>
-          <NavLink to={socketRouting}>Socket</NavLink>
-          <Authorisation />
+          <IconButton onClick={() => setNavigationMenuOpen(true)}>
+            <MenuIcon />
+          </IconButton>
+          <Typography>Home</Typography>
+          {auth ? (
+            <LoginUserFields logout={() => setAuth(false)} />
+          ) : (
+            <NotLoginUserFields login={() => setAuth(true)} />
+          )}
         </Toolbar>
       </AppBar>
     </>
