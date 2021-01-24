@@ -6,6 +6,7 @@ import net.lafox.ihor.backend.dto.request.SignInRequest;
 import net.lafox.ihor.backend.dto.request.SignUpRequest;
 import net.lafox.ihor.backend.dto.response.LoginResponse;
 import net.lafox.ihor.backend.service.PlayerAuthenticationService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +27,11 @@ public class PlayerAuthenticationController {
   @PostMapping("sign-in")
   public LoginResponse signIn(@RequestBody SignInRequest signInRequest) {
     return playerAuthenticationService.signIn(signInRequest);
+  }
+
+  @PreAuthorize("hasRole('PLAYER')")
+  @PostMapping("update-short-jwt")
+  public String updateShortJwt() {
+    return playerAuthenticationService.updateShortJwt();
   }
 }

@@ -26,14 +26,22 @@ public class PlayerJwtAuthenticationFilter extends OncePerRequestFilter {
   protected void doFilterInternal(
       HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
       throws ServletException, IOException {
-    String jwt = getJwtFromHeader(request);
+    String jwtShort = getJwtShortFromHeader(request);
+    String jwtLong = getJwtLongFromHeader(request);
+    doJwtFilter(request, jwtShort);
+    if (SecurityContextHolder.getContext().getAuthentication() == null) {
+      doJwtFilter(request, jwtLong);
+    }
+    filterChain.doFilter(request, response);
+  }
+
+  private void doJwtFilter(HttpServletRequest request, String jwt) {
     if (tokenProvider.isValid(jwt)) {
       UserDetails userDetails = fetchUserDetails(jwt);
       if (userDetails != null) {
         setAuthentication(request, userDetails);
       }
     }
-    filterChain.doFilter(request, response);
   }
 
   private void setAuthentication(HttpServletRequest request, UserDetails userDetails) {
@@ -48,7 +56,11 @@ public class PlayerJwtAuthenticationFilter extends OncePerRequestFilter {
     return playerDetailsService.loadUserByUsername(username);
   }
 
-  private String getJwtFromHeader(HttpServletRequest request) {
+  private String getJwtShortFromHeader(HttpServletRequest request) {
     return request.getHeader("player");
+  }
+
+  private String getJwtLongFromHeader(HttpServletRequest request) {
+    return request.getHeader("player-long");
   }
 }

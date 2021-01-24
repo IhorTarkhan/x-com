@@ -1,10 +1,11 @@
 export const PLAYER = "xcom_online_player";
+export const PLAYER_LONG = "xcom_online_player_long";
 
 export const getCookie = (name: string): string | undefined => {
   return document.cookie
     .split(";")
     .map((c) => c.trim())
-    .find((cookie) => cookie.startsWith(name))
+    .find((cookie) => cookie.startsWith(name + "="))
     ?.substr(name.length + 1);
 };
 

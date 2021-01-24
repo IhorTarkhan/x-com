@@ -15,13 +15,21 @@ import java.util.Date;
 public class JwtTokenProvider {
   private final JwtProperties jwtProperties;
 
-  public String generate(String subject) {
+  public String generateShort(String subject) {
     Date now = new Date();
-    Date expiryDate = new Date(now.getTime() + jwtProperties.getExpirationInMs());
+    Date expiryDate = new Date(now.getTime() + jwtProperties.getExpirationInMsShort());
     return Jwts.builder()
         .setSubject(subject)
         .setIssuedAt(now)
         .setExpiration(expiryDate)
+        .signWith(SignatureAlgorithm.HS512, jwtProperties.getKey())
+        .compact();
+  }
+
+  public String generateLong(String subject) {
+    return Jwts.builder()
+        .setSubject(subject)
+        .setIssuedAt(new Date())
         .signWith(SignatureAlgorithm.HS512, jwtProperties.getKey())
         .compact();
   }
@@ -33,9 +41,10 @@ public class JwtTokenProvider {
   }
 
   public boolean isValid(String authToken) {
+    if (!StringUtils.hasText(authToken)) return false;
     try {
       Jwts.parser().setSigningKey(jwtProperties.getKey()).parseClaimsJws(authToken);
-      return StringUtils.hasText(authToken);
+      return true;
     } catch (SignatureException ex) {
       log.error("Invalid JWT signature");
     } catch (MalformedJwtException ex) {

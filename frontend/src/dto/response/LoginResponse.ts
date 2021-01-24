@@ -1,3 +1,4 @@
 export type LoginResponse = {
-  accessToken: string;
+  jwtShort: string;
+  jwtLong: string;
 };

@@ -9,5 +9,6 @@ import lombok.*;
 @RequiredArgsConstructor
 @JsonSerialize
 public class LoginResponse {
-  private final String accessToken;
+  private final String jwtShort;
+  private final String jwtLong;
 }

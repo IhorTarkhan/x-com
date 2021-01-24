@@ -36,7 +36,7 @@ liquibase:
 
 jwt:
   key: # external
-  expirationInMs: # external
+  expirationInMsShort: # external
 
 socket:
   port: # external

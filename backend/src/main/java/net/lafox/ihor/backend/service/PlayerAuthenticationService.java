@@ -7,8 +7,11 @@ import net.lafox.ihor.backend.dto.request.SignUpRequest;
 import net.lafox.ihor.backend.dto.response.LoginResponse;
 import net.lafox.ihor.backend.entity.Player;
 import net.lafox.ihor.backend.exception.conflict_409.ConflictException;
+import net.lafox.ihor.backend.exception.unauthorized_401.UnauthorizedException;
 import net.lafox.ihor.backend.repository.PlayerRepository;
 import net.lafox.ihor.backend.security.JwtTokenProvider;
+import net.lafox.ihor.backend.util.SecurityUtil;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,14 +31,26 @@ public class PlayerAuthenticationService {
     Player newPlayer = toPlayerEntity(request);
     playerRepository.save(newPlayer);
     Player authPlayer = getAuthorisedPlayer(request.getUsername(), request.getPassword());
-    String jwt = tokenProvider.generate(authPlayer.getUsername());
-    return new LoginResponse(jwt);
+    String jwtShort = tokenProvider.generateShort(authPlayer.getUsername());
+    String jwtLong = tokenProvider.generateLong(authPlayer.getUsername());
+    return new LoginResponse(jwtShort, jwtLong);
   }
 
   public LoginResponse signIn(SignInRequest request) {
     Player authPlayer = getAuthorisedPlayer(request.getUsername(), request.getPassword());
-    String jwt = tokenProvider.generate(authPlayer.getUsername());
-    return new LoginResponse(jwt);
+    String jwtShort = tokenProvider.generateShort(authPlayer.getUsername());
+    String jwtLong = tokenProvider.generateLong(authPlayer.getUsername());
+    return new LoginResponse(jwtShort, jwtLong);
+  }
+
+  @PreAuthorize("hasRole('PLAYER')")
+  public String updateShortJwt() {
+    Player currentPlayer = SecurityUtil.getCurrentPlayer();
+    if (currentPlayer == null) {
+      log.error("Have no grant to update short jwt");
+      throw new UnauthorizedException("Have no grant to update short jwt");
+    }
+    return tokenProvider.generateShort(currentPlayer.getUsername());
   }
 
   private void validate(SignUpRequest request) {
