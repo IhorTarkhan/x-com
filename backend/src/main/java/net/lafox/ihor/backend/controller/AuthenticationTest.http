@@ -28,7 +28,7 @@ Content-Type: application/json
 ###
 # 403
 GET http://localhost:8080/test2
-player_authorization: Bearer "invalid jwt"
+Player-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHJpbmciLCJpYXQiOjE2MTE0Mjc0NjQsImV4cCI6MTYxMTQyNzQ3NH0.pIQKj9CRwlEHZYrgDlXQL7oIUJsiA2EqDl5xE8ZmTrN619NvYYv1q4uhMbj664vk2sjP9jV03Gj6ZV_y5wdffg
 Content-Type: application/json
 
 ###

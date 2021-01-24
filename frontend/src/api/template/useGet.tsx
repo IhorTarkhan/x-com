@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { axios } from "../../util/axios";
 
 export const useGet = <RESPONSE_TYPE,>(
-  url: string,
+  url: string
 ): [
   () => void,
   RESPONSE_TYPE | undefined,
   boolean | undefined,
-  { message: string } | undefined,
+  { message: string } | undefined
 ] => {
   const [responseData, setResponseData] = useState<RESPONSE_TYPE>();
   const [isLoading, setIsLoading] = useState<boolean>();

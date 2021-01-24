@@ -10,7 +10,7 @@ export const Authorisation = (): ReactElement => {
 
   const [signIn, responseData, , error] = useSignUpApi();
   useEffect(() => {
-    if (error) alert(error.message);
+    if (error) console.warn(error);
   }, [error]);
 
   useEffect(() => {

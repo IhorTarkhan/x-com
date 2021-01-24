@@ -8,8 +8,13 @@ import {
 import { MainPage } from "./page/MainPage";
 import { BattlegroundPage } from "./page/BattlegroundPage";
 import { SocketPage } from "./page/SocketPage";
+import { getCookie, PLAYER } from "./util/cookie";
 
 function App() {
+  const playerUuidFromStorage = getCookie(PLAYER);
+  if (playerUuidFromStorage) {
+  }
+
   return (
     <BrowserRouter>
       <Switch>

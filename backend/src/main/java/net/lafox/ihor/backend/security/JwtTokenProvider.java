@@ -36,25 +36,21 @@ public class JwtTokenProvider {
     return claims.getSubject();
   }
 
-  public void validate(String authToken) {
+  public boolean isValid(String authToken) {
     try {
       Jwts.parser().setSigningKey(jwtProperties.getKey()).parseClaimsJws(authToken);
-      StringUtils.hasText(authToken);
+      return StringUtils.hasText(authToken);
     } catch (SignatureException ex) {
       log.error("Invalid JWT signature");
-      throw new JwtTokenException("Invalid JWT signature");
     } catch (MalformedJwtException ex) {
       log.error("Invalid JWT token");
-      throw new JwtTokenException("Invalid JWT token");
     } catch (ExpiredJwtException ex) {
       log.error("Expired JWT token");
-      throw new JwtTokenException("Expired JWT token");
     } catch (UnsupportedJwtException ex) {
       log.error("Unsupported JWT token");
-      throw new JwtTokenException("Unsupported JWT token");
     } catch (IllegalArgumentException ex) {
       log.error("JWT claims string is empty");
-      throw new JwtTokenException("JWT claims string is empty");
     }
+    return false;
   }
 }

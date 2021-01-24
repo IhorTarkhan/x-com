@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { axios } from "../../util/axios";
 
 export const usePut = <PUT_TYPE, RESPONSE_TYPE>(
-  url: string,
+  url: string
 ): [
   (data: PUT_TYPE) => void,
   RESPONSE_TYPE | undefined,
   boolean | undefined,
-  { message: string } | undefined,
+  { message: string } | undefined
 ] => {
   const [puttingData, setPuttingData] = useState<PUT_TYPE>();
   const [responseData, setResponseData] = useState<RESPONSE_TYPE>();

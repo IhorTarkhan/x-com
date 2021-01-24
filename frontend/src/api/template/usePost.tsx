@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { axios } from "../../util/axios";
 import { ErrorResponse } from "./ErrorResponse";
 
 export const usePost = <POST_TYPE, RESPONSE_TYPE>(
@@ -24,7 +24,7 @@ export const usePost = <POST_TYPE, RESPONSE_TYPE>(
         let resp = (await axios.post(url, postingData)).data;
         setResponseData(resp);
       } catch (e) {
-        setError({ status: e.response.status, message: e.response.data });
+        setError({ status: e.response?.status, message: e.response?.data });
       }
       setIsLoading(false);
     };

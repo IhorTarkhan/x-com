@@ -1,5 +1,5 @@
 import { usePost } from "./template/usePost";
-import { host } from "../constant/url";
+import { host, playerUrl } from "../constant/url";
 import { SignInRequest } from "../dto/request/SignInRequest";
 import { LoginResponse } from "../dto/response/LoginResponse";
 
@@ -9,7 +9,7 @@ export const useSignInApi = (): [
   boolean | undefined,
   { message: string } | undefined
 ] => {
-  return usePost<SignInRequest, LoginResponse>(`${host}/sign-in`);
+  return usePost<SignInRequest, LoginResponse>(`${host}${playerUrl}/sign-in`);
 };
 export const useSignUpApi = (): [
   (data: SignInRequest) => void,
@@ -17,5 +17,13 @@ export const useSignUpApi = (): [
   boolean | undefined,
   { message: string } | undefined
 ] => {
-  return usePost<SignInRequest, LoginResponse>(`${host}/sign-up`);
+  return usePost<SignInRequest, LoginResponse>(`${host}${playerUrl}/sign-up`);
+};
+export const useValidatePlayerUuidApi = (): [
+  (data: SignInRequest) => void,
+  LoginResponse | undefined,
+  boolean | undefined,
+  { message: string } | undefined
+] => {
+  return usePost<SignInRequest, LoginResponse>(`${host}${playerUrl}/sign-up`);
 };
