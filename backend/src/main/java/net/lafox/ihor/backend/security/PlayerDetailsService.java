@@ -14,9 +14,13 @@ public class PlayerDetailsService implements UserDetailsService {
   private final PlayerRepository playerRepository;
 
   @Override
-  public UserDetails loadUserByUsername(String email) {
+  public UserDetails loadUserByUsername(String username) {
     return playerRepository
-        .findByEmail(email)
-        .orElseThrow(() -> new RuntimeException("Player not found with email: " + email));
+        .findByUsername(username)
+        .orElseThrow(
+            () -> {
+              log.error("Player not found with username: " + username);
+              return null;
+            });
   }
 }

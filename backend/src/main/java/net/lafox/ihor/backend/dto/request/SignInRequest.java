@@ -10,6 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @JsonSerialize
 public class SignInRequest {
-  private String email;
+  private String username;
   private String password;
 }

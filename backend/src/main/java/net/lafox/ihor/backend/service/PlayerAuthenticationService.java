@@ -11,7 +11,6 @@ import net.lafox.ihor.backend.repository.PlayerRepository;
 import net.lafox.ihor.backend.security.JwtTokenProvider;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,32 +23,38 @@ public class PlayerAuthenticationService {
   private final JwtTokenProvider tokenProvider;
   private final PasswordEncoder passwordEncoder;
 
-  public LoginResponse signIn(SignInRequest request) {
-    Authentication auth = getAuthenticate(request.getEmail(), request.getPassword());
-    return generateToken(auth);
-  }
-
   public LoginResponse signUp(SignUpRequest request) {
-    if (playerRepository.existsByEmail(request.getEmail()))
-      throw new ConflictException(String.format("Username '%s' already taken", request.getEmail()));
-
-    Player newPlayer =
-        Player.builder()
-            .email(request.getEmail())
-            .password(passwordEncoder.encode(request.getPassword()))
-            .build();
+    validate(request);
+    Player newPlayer = toPlayerEntity(request);
     playerRepository.save(newPlayer);
-    Authentication auth = getAuthenticate(request.getEmail(), request.getPassword());
-    return generateToken(auth);
-  }
-
-  private Authentication getAuthenticate(String email, String password) {
-    return authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(email, password));
-  }
-
-  private LoginResponse generateToken(Authentication auth) {
-    String jwt = tokenProvider.generateToken(auth);
+    Player authPlayer = getAuthorisedPlayer(request.getUsername(), request.getPassword());
+    String jwt = tokenProvider.generate(authPlayer.getUsername());
     return new LoginResponse(jwt);
+  }
+
+  public LoginResponse signIn(SignInRequest request) {
+    Player authPlayer = getAuthorisedPlayer(request.getUsername(), request.getPassword());
+    String jwt = tokenProvider.generate(authPlayer.getUsername());
+    return new LoginResponse(jwt);
+  }
+
+  private void validate(SignUpRequest request) {
+    if (playerRepository.existsByUsername(request.getUsername()))
+      throw new ConflictException(
+          String.format("Username '%s' already taken", request.getUsername()));
+  }
+
+  private Player toPlayerEntity(SignUpRequest request) {
+    return Player.builder()
+        .username(request.getUsername())
+        .password(passwordEncoder.encode(request.getPassword()))
+        .build();
+  }
+
+  private Player getAuthorisedPlayer(String username, String password) {
+    return (Player)
+        authenticationManager
+            .authenticate(new UsernamePasswordAuthenticationToken(username, password))
+            .getPrincipal();
   }
 }

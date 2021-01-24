@@ -4,8 +4,6 @@ import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.lafox.ihor.backend.property.JwtProperties;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -17,20 +15,18 @@ import java.util.Date;
 public class JwtTokenProvider {
   private final JwtProperties jwtProperties;
 
-  public String generateToken(Authentication authentication) {
-    UserDetails playerPrincipal = (UserDetails) authentication.getPrincipal();
+  public String generate(String subject) {
     Date now = new Date();
     Date expiryDate = new Date(now.getTime() + jwtProperties.getExpirationInMs());
-
     return Jwts.builder()
-        .setSubject(playerPrincipal.getUsername())
+        .setSubject(subject)
         .setIssuedAt(now)
         .setExpiration(expiryDate)
         .signWith(SignatureAlgorithm.HS512, jwtProperties.getKey())
         .compact();
   }
 
-  public String getUsernameFromJWT(String token) {
+  public String getSubject(String token) {
     Claims claims =
         Jwts.parser().setSigningKey(jwtProperties.getKey()).parseClaimsJws(token).getBody();
     return claims.getSubject();

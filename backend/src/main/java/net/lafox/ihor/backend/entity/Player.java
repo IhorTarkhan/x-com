@@ -24,18 +24,15 @@ public class Player implements UserDetails {
   @Id @GeneratedValue private Long id;
 
   @Column(unique = true)
-  private String email;
+  private String username;
 
   private String password;
+
+  private String email;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return Collections.singleton(new SimpleGrantedAuthority("ROLE_PLAYER"));
-  }
-
-  @Override
-  public String getUsername() {
-    return email;
   }
 
   @Override

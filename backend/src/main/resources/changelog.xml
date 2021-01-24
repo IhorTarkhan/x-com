@@ -5,8 +5,8 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet id="add-test@email.com-password-user" author="IhorTarkhan">
         <sql>
-            INSERT INTO player(id, email, password)
-            VALUES (0, 'test@account', '$2a$10$XAHxARBxGKHKALO.6x1gMu4UvCdUqstpoEL37ceNAiPwNBEeJ.Ww.');
+            INSERT INTO player(id, username, password)
+            VALUES (0, 'username', '$2a$10$XAHxARBxGKHKALO.6x1gMu4UvCdUqstpoEL37ceNAiPwNBEeJ.Ww.');
         </sql>
     </changeSet>
     <changeSet id="populate-positions" author="IhorTarkhan">

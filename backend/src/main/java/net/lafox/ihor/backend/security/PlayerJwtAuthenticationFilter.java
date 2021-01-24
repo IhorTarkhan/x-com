@@ -44,8 +44,8 @@ public class PlayerJwtAuthenticationFilter extends OncePerRequestFilter {
   }
 
   private UserDetails fetchUserDetails(String jwt) {
-    String userId = tokenProvider.getUsernameFromJWT(jwt);
-    return playerDetailsService.loadUserByUsername(userId);
+    String username = tokenProvider.getSubject(jwt);
+    return playerDetailsService.loadUserByUsername(username);
   }
 
   private String getJwtFromHeader(HttpServletRequest request) {

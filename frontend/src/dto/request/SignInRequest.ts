@@ -1,4 +1,4 @@
 export type SignInRequest = {
-  email: string;
+  username: string;
   password: string;
 };

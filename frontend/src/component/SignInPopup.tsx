@@ -40,7 +40,7 @@ export function SignInPopup(props: Props) {
         <Button
           onClick={() =>
             signIn({
-              email: "string",
+              username: "string",
               password: "string",
             })
           }
