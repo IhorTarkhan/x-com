@@ -18,17 +18,16 @@ export const usePost = <POST_TYPE, RESPONSE_TYPE>(
 
   useEffect(() => {
     if (!postingData) return;
-    const postData = async (postingData: POST_TYPE) => {
+    (async (data: POST_TYPE) => {
       setIsLoading(true);
       try {
-        let resp = (await axios.post(url, postingData)).data;
-        setResponseData(resp);
+        const response = (await axios.post(url, data)).data;
+        setResponseData(response);
       } catch (e) {
         setError({ status: e.response?.status, message: e.response?.data });
       }
       setIsLoading(false);
-    };
-    postData(postingData);
+    })(postingData);
   }, [url, postingData]);
 
   return [
