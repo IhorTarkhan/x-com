@@ -1,14 +1,14 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { Button } from "@material-ui/core";
 import { SignInPopup } from "./SignInPopup";
-import { useSignUpApi } from "../api/LoginInApi";
+import { useSignUpPostApi } from "../api/LoginInApi";
 import { SignInRequest } from "../dto/request/SignInRequest";
 import { PLAYER, PLAYER_LONG, setCookie } from "../util/cookie";
 
 export const Authorisation = (): ReactElement => {
   const [isSignIn, setIsSignIn] = useState<boolean>(false);
 
-  const [signIn, responseData, , error] = useSignUpApi();
+  const [signIn, responseData, , error] = useSignUpPostApi();
   useEffect(() => {
     if (error) {
       if (error.status === 409) {
