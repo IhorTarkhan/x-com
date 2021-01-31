@@ -1,116 +1,58 @@
 import React, { ReactElement, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Button,
-  Divider,
-  IconButton,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
-import { AccountCircle } from "@material-ui/icons";
-import MenuIcon from "@material-ui/icons/Menu";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { NavigationMenu } from "./NavigationMenu";
+import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core";
+import { NavLink, useHistory } from "react-router-dom";
+import { homeRouting, socketRouting } from "../constant/routes";
+import { LoginUserNavigation } from "./LoginUserNavigation";
+import { NotLoginUserNavigation } from "./NotLoginUserNavigation";
 
 const useStyles = makeStyles((theme) => ({
-  appBar: {
+  root: {
     position: "static",
-    "& p": {
-      ...theme.typography.h6,
-      flexGrow: 1,
-      paddingLeft: theme.spacing(2),
+    "& img": {
+      width: theme.spacing(20),
+      height: theme.spacing(15),
     },
-    "& button": {
-      ...theme.typography.body1,
-      color: "inherit",
-      padding: theme.spacing(1),
+    "& a": {
+      ...theme.typography.h5,
+      color: "white",
+      textDecoration: "none",
+      display: "flex",
+      justifyContent: "center",
+    },
+    "& a.active": {
+      textDecoration: "underline",
     },
   },
-  userMenu: {
-    width: "25vw",
-    "& svg": { paddingRight: theme.spacing(1) },
+  link: {
+    flexGrow: 1,
   },
 }));
 
-export const LoginUserFields = (props: { logout: () => void }) => {
-  const classes = useStyles();
-  const [open, setOpen] = useState<boolean>(false);
-
-  const handleMenu = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleLogout = () => {
-    handleClose();
-    props.logout();
-  };
-  return (
-    <>
-      <IconButton id={"avatar-id"} onClick={handleMenu}>
-        <AccountCircle />
-      </IconButton>
-      <Menu
-        anchorEl={document.getElementById("avatar-id")}
-        getContentAnchorEl={null}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
-        className={classes.userMenu}
-        open={open}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose}>
-          <AccountCircle />
-          My account
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={handleLogout}>
-          <ExitToAppIcon />
-          Logout
-        </MenuItem>
-      </Menu>
-    </>
-  );
-};
-
-export const NotLoginUserFields = (props: { login: () => void }) => {
-  return (
-    <>
-      <Button onClick={props.login}>Sign In</Button>
-      <Button onClick={props.login}>Sign Up</Button>
-    </>
-  );
-};
-
 export const NavigationPanel = (): ReactElement => {
   const classes = useStyles();
-  const [isNavigationMenuOpen, setNavigationMenuOpen] = useState(false);
+  const history = useHistory();
   const [auth, setAuth] = useState<boolean>(true);
 
   return (
     <>
-      <NavigationMenu
-        isOpen={isNavigationMenuOpen}
-        close={() => setNavigationMenuOpen(false)}
-      />
-      <AppBar className={classes.appBar}>
+      <AppBar className={classes.root}>
         <Toolbar>
-          <IconButton onClick={() => setNavigationMenuOpen(true)}>
-            <MenuIcon />
+          <IconButton onClick={() => history.push(homeRouting)}>
+            <img src={"logo.svg"} alt={"XCOM online"} />
           </IconButton>
-          <Typography>Home</Typography>
+
+          <Typography className={classes.link}>
+            <NavLink to={socketRouting}>Socket</NavLink>
+          </Typography>
+          <Typography className={classes.link}>
+            <NavLink to={"socketRouting"}>Socket2</NavLink>
+          </Typography>
+
           {auth ? (
-            <LoginUserFields logout={() => setAuth(false)} />
+            <LoginUserNavigation logout={() => setAuth(false)} />
           ) : (
-            <NotLoginUserFields login={() => setAuth(true)} />
+            <NotLoginUserNavigation login={() => setAuth(true)} />
           )}
         </Toolbar>
       </AppBar>
