@@ -24,7 +24,10 @@ export const usePost = <POST_TYPE, RESPONSE_TYPE>(
         const response = (await axios.post(url, data)).data;
         setResponseData(response);
       } catch (e) {
-        setError({ status: e.response?.status, message: e.response?.data });
+        setError({
+          status: e.response?.status,
+          message: e.response?.data,
+        });
       }
       setIsLoading(false);
     })(postingData);

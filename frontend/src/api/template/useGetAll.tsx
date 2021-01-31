@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { axios } from "../../util/axios";
+import { ErrorResponse } from "./ErrorResponse";
 
-export const useGet = <RESPONSE_TYPE,>(
+export const useGetAll = <RESPONSE_TYPE,>(
   url: string
 ): [
   () => void,
@@ -11,22 +12,23 @@ export const useGet = <RESPONSE_TYPE,>(
 ] => {
   const [responseData, setResponseData] = useState<RESPONSE_TYPE>();
   const [isLoading, setIsLoading] = useState<boolean>();
-  const [error, setError] = useState<{ message: string }>();
+  const [error, setError] = useState<ErrorResponse>();
   const [update, setUpdate] = useState<any>({});
 
   useEffect(() => {
-    const getData = async () => {
+    (async () => {
       setIsLoading(true);
       try {
         let resp = (await axios.get(url)).data;
         setResponseData(resp);
       } catch (e) {
-        console.error(e);
-        setError(e);
+        setError({
+          status: e.response?.status,
+          message: e.response?.data,
+        });
       }
       setIsLoading(false);
-    };
-    getData();
+    })();
   }, [url, update]);
 
   return [() => setUpdate({}), responseData, isLoading, error];

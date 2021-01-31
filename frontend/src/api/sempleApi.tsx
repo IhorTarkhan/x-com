@@ -1,11 +1,11 @@
 import { UnitDto } from "../dto/UnitDto";
 import { usePost } from "./template/usePost";
-import { useGet } from "./template/useGet";
+import { useGetAll } from "./template/useGetAll";
 import { usePut } from "./template/usePut";
 import { useGetById } from "./template/useGetById";
 import { useDeleteById } from "./template/useDeleteById";
 
-export const useGetUsers = () => useGet<UnitDto[]>("https://useGetUsers");
+export const useGetUsers = () => useGetAll<UnitDto[]>("https://useGetUsers");
 
 export const useGetUserById = () =>
   useGetById<UnitDto>("https://useGetUserById");
