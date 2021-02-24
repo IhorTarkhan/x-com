@@ -19,6 +19,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * PlayerJwtAuthenticationFilter class
+ *
+ * class to do filtration on HttpServletRequest.
+ * Login user if request have header with valid
+ * "Authorization" field
+ */
 @Component
 @Slf4j
 @RequiredArgsConstructor

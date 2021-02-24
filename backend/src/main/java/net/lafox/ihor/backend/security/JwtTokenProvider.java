@@ -13,6 +13,14 @@ import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
+/**
+ * JwtTokenProvider class
+ *
+ * Class for managment jwt:
+ * create new for Authentication,
+ * fetch information from jwt
+ * and check existing token on valid
+ */
 @Component
 @Log4j2
 @RequiredArgsConstructor
