@@ -1,0 +1,15 @@
+net.lafox.ihor.backend
+net.lafox.ihor.backend.config
+net.lafox.ihor.backend.controller
+net.lafox.ihor.backend.dto
+net.lafox.ihor.backend.dto.action
+net.lafox.ihor.backend.entity
+net.lafox.ihor.backend.exception
+net.lafox.ihor.backend.exception.jwt
+net.lafox.ihor.backend.mapper
+net.lafox.ihor.backend.property
+net.lafox.ihor.backend.repository
+net.lafox.ihor.backend.security
+net.lafox.ihor.backend.service
+net.lafox.ihor.backend.socket
+net.lafox.ihor.backend.util
