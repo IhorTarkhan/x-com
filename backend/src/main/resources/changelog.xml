@@ -5,11 +5,8 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet id="add-test@email.com-password-user" author="IhorTarkhan">
         <sql>
-            INSERT INTO admin_user(id, account_non_expired, account_non_locked, credentials_non_expired, email,
-            email_verified, enabled, password, role)
-            VALUES (-1, true, true, true, 'test@account', true, true,
-            '$2a$10$XAHxARBxGKHKALO.6x1gMu4UvCdUqstpoEL37ceNAiPwNBEeJ.Ww.', 'PLAYER')
-            ON CONFLICT DO NOTHING;
+            INSERT INTO player(id, email, password)
+            VALUES (0, 'test@account', '$2a$10$XAHxARBxGKHKALO.6x1gMu4UvCdUqstpoEL37ceNAiPwNBEeJ.Ww.');
         </sql>
     </changeSet>
     <changeSet id="populate-positions" author="IhorTarkhan">

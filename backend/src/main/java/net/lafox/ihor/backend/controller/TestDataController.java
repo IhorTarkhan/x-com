@@ -2,7 +2,7 @@ package net.lafox.ihor.backend.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.lafox.ihor.backend.entity.AdminUser;
+import net.lafox.ihor.backend.entity.Player;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +30,9 @@ public class TestDataController {
 
   @GetMapping(value = "who-am-i")
   public String whoAmI() {
-    AdminUser principal =
-        (AdminUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    return principal.getFirstName() + " " + principal.getLastName();
+    Player principal =
+        (Player) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    return principal.getUsername();
   }
 
   @PostMapping

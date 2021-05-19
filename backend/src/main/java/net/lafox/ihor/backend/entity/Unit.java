@@ -13,17 +13,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Unit {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+  @Id @GeneratedValue private Long id;
 
   private String name;
 
   @Enumerated(EnumType.STRING)
   private UnitType type;
 
-  @OneToOne
-  private Position position;
+  @OneToOne private Position position;
 
   private Integer maxHealth;
 

@@ -1,7 +1,7 @@
 package net.lafox.ihor.backend.config;
 
 import lombok.RequiredArgsConstructor;
-import net.lafox.ihor.backend.security.UserAuthenticationFilter;
+import net.lafox.ihor.backend.security.PlayerJwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,14 +17,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.http.HttpMethod.OPTIONS;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-  private final UserAuthenticationFilter userAuthenticationFilter;
+  private final PlayerJwtAuthenticationFilter playerJwtAuthenticationFilter;
   private final UserDetailsService userService;
 
   @Override
@@ -40,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
-        .addFilterBefore(this.userAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+        .addFilterBefore(this.playerJwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         .authorizeRequests()
         .anyRequest()
         .permitAll();
